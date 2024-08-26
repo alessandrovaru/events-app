@@ -15,8 +15,8 @@ export const Hero = async () => {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-white text-black hover:bg-gray-200">Start Your Journey</button>
-                <button variant="outline" className="text-white border-white hover:bg-white hover:text-black">
+                <button className="bg-white text-black hover:bg-gray-200 py-2 px-4 rounded-lg"> Get Started </button>
+                <button variant="outline" className="text-white border-white hover:bg-white hover:text-black px-4 rounded-lg">
                   View Schedule
                 </button>
               </div>
