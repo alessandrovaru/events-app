@@ -15,7 +15,7 @@ export const CallToAction = async () => {
   const { title, description, placeholder, buttonText, termsLink } = data;
 
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-black text-white">
+    <section className="w-full py-12 md:py-24 lg:py-32 bg-black text-white flex items-center justify-center">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="space-y-2">
@@ -27,18 +27,9 @@ export const CallToAction = async () => {
             </p>
           </div>
           <div className="w-full max-w-sm space-y-2">
-            <form className="flex space-x-2">
-              <input className="max-w-lg flex-1 bg-white text-black" placeholder={placeholder} type="email" />
-              <button className="bg-red-600 text-white hover:bg-red-700" type="submit">
+              <button className="bg-red-600 text-white hover:bg-red-700 py-2 px-4 rounded-lg" type="submit">
                 {buttonText}
               </button>
-            </form>
-            <p className="text-xs text-gray-400">
-              By signing up, you agree to our{" "}
-              <Link className="underline underline-offset-2" href={termsLink.href}>
-                {termsLink.text}
-              </Link>
-            </p>
           </div>
         </div>
       </div>
