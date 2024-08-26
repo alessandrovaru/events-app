@@ -1,24 +1,18 @@
 import Link from "next/link"
-import { Swords } from "lucide-react"
+import Image from "next/image"
 export const Header = async () => {
   return (
     <header className="px-4 lg:px-6 h-14 flex items-center">
       <Link className="flex items-center justify-center" href="#">
-        <Swords className="h-6 w-6 mr-2" />
+        <Image src="/images/logo.jpg" alt="Total Elite Training" width={40} height={40} />
         <span className="font-bold">Total Elite Training</span>
       </Link>
       <nav className="ml-auto flex gap-4 sm:gap-6">
-        <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
-          Classes
+        <Link className="py-2 px-4 rounded-lg text-sm font-medium hover:underline underline-offset-4" href="#">
+          Clases
         </Link>
-        <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
-          Schedule
-        </Link>
-        <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
-          About
-        </Link>
-        <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
-          Contact
+        <Link className="py-2 px-4 rounded-lg bg-white text-black hover:bg-gray-200 text-sm font-medium" href="#">
+          Iniciar sesión
         </Link>
       </nav>
     </header>
