@@ -3,7 +3,7 @@ import { Dumbbell, Users, Trophy, Swords } from "lucide-react"
 export const WhyChooseUs = async () => {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
-      <div className="container px-4 md:px-6">
+      <div className="container px-4 md:px-6 text-black">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Why Choose Us</h2>
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
