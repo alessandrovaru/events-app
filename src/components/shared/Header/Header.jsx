@@ -12,11 +12,12 @@ export const Header = async ({tokens}) => {
         <Link className="py-2 px-4 rounded-lg text-sm font-medium hover:underline underline-offset-4" href="#">
           Clases
         </Link>
-        <Link className="py-2 px-4 rounded-lg bg-white text-black hover:bg-gray-200 text-sm font-medium" href="/signin">
-          Iniciar sesión
-        </Link>
-        {tokens && (
+        {tokens ? (
           <Logout email={tokens?.decodedToken.email}/>
+        ): (
+          <Link className="py-2 px-4 rounded-lg bg-white text-black hover:bg-gray-200 text-sm font-medium" href="/login">
+            Iniciar sesión
+          </Link>
         )}
       </nav>
     </header>
