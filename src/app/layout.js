@@ -10,6 +10,8 @@ const inter = Inter({ subsets: ['latin'] })
 import { getTokens } from "next-firebase-auth-edge";
 import { cookies } from "next/headers";
 import { clientConfig, serverConfig } from '@/config'
+import { AuthProvider } from './auth/AuthProvider'
+import { toUser } from './shared/user'
 
 
 export const metadata = {
@@ -25,13 +27,17 @@ export default async function RootLayout({ children }) {
     serviceAccount: serverConfig.serviceAccount,
   });
 
+  const user = tokens ? toUser(tokens) : null;
+
   return (
     <html lang="es">
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
-          <Header tokens={tokens} />
-          {children}
-          <Footer />
+          <AuthProvider user={user}>
+            <Header tokens={tokens} />
+            {children}
+            <Footer />
+          </AuthProvider>
         </div>
       </body>
     </html>

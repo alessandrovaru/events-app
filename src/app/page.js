@@ -18,6 +18,8 @@ export default async function Component() {
     serviceAccount: serverConfig.serviceAccount,
   });
 
+  
+
   if (!tokens) {
     return (
       <main className="flex-1">
