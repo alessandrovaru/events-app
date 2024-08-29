@@ -3,14 +3,32 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { app } from "../../firebase";
+
+import {useLoadingCallback} from 'react-loading-hook';
+import { getFirebaseAuth } from "../auth/firebase";
+import { getGoogleProvider, loginWithProvider, loginWithProviderUsingRedirect } from "./firebase";
+import { loginWithCredential } from "@/api";
+import { useRedirectParam } from "../shared/useRedirectParam";
+import { useRedirectAfterLogin } from "../shared/useRedirectAfterLogin";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+
+  const redirect = useRedirectParam();
+  const redirectAfterLogin = useRedirectAfterLogin();
+
+
+
+  async function handleLogin(credential) {
+    await loginWithCredential(credential);
+    redirectAfterLogin();
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -35,6 +53,14 @@ export default function Login() {
       setError((e).message);
     }
   }
+
+  const [handleLoginWithGoogle, isGoogleLoading, googleError] =
+    useLoadingCallback(async () => {
+
+      const auth = getFirebaseAuth();
+      await handleLogin(await loginWithProvider(auth, getGoogleProvider(auth)));
+    });
+
 
   return (
     <main className="flex flex-col items-center justify-center p-8 h-[80dvh]">
@@ -108,6 +134,14 @@ export default function Login() {
               </Link>
             </p>
           </form>
+          <button 
+            loading={isGoogleLoading}
+            disabled={isGoogleLoading}
+            onClick={handleLoginWithGoogle} 
+            className="w-full text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-primary-800"
+          >
+              Sign in with Google
+            </button>
         </div>
       </div>
     </main>

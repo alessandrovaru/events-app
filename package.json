@@ -15,7 +15,8 @@
     "next-firebase-auth-edge": "^1.7.0-canary.2",
     "react": "^18",
     "react-dom": "^18",
-    "react-firebase-hooks": "^5.1.1"
+    "react-firebase-hooks": "^5.1.1",
+    "react-loading-hook": "^1.1.2"
   },
   "devDependencies": {
     "eslint": "^8",

@@ -2,9 +2,11 @@
 
 import { FormEvent, useState } from "react";
 import Link from "next/link";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword,  signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from "../../firebase";
 import { useRouter } from "next/navigation";
+
+
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -12,6 +14,8 @@ export default function Register() {
   const [confirmation, setConfirmation] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+
+
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -30,6 +34,19 @@ export default function Register() {
       setError((e).message);
     }
   }
+
+  const signInWithGoogle = async () => {
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+    try{
+      await signInWithPopup(auth, provider);
+      router.push("/dashboard");
+    } catch (e) {
+      console.error(e.message);
+    }
+  }
+
+
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8">
@@ -112,6 +129,7 @@ export default function Register() {
             >
               Create an account
             </button>
+            
             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
               Already have an account?{" "}
               <Link
@@ -122,6 +140,9 @@ export default function Register() {
               </Link>
             </p>
           </form>
+          <button onClick={signInWithGoogle} className="w-full text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-primary-800">
+              Sign in with Google
+            </button>
         </div>
       </div>
     </main>

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
-export const Header = async () => {
+import Logout from "@/app/Logout";
+export const Header = async ({tokens}) => {
   return (
     <header className="px-4 lg:px-6 flex items-center h-[10dvh]">
       <Link className="flex items-center justify-center" href="#">
@@ -14,6 +15,9 @@ export const Header = async () => {
         <Link className="py-2 px-4 rounded-lg bg-white text-black hover:bg-gray-200 text-sm font-medium" href="/signin">
           Iniciar sesión
         </Link>
+        {tokens && (
+          <Logout email={tokens?.decodedToken.email}/>
+        )}
       </nav>
     </header>
   );
