@@ -14,7 +14,7 @@ export async function middleware(request) {
     cookieSerializeOptions: serverConfig.cookieSerializeOptions,
     serviceAccount: serverConfig.serviceAccount,
     handleValidToken: async ({token, decodedToken}, headers) => {
-      if (PUBLIC_PATHS.includes(request.nextUrl.pathname)) {
+      if (PUBLIC_PATHS.includes(request.nextUrl.pathname &&  request.nextUrl.pathname !== '/')) {
         return redirectToHome(request);
       }
 

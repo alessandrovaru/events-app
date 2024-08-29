@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 export const Header = async () => {
   return (
-    <header className="px-4 lg:px-6 h-14 flex items-center">
+    <header className="px-4 lg:px-6 flex items-center h-[10dvh]">
       <Link className="flex items-center justify-center" href="#">
         <Image src="/images/logo.jpg" alt="Total Elite Training" width={40} height={40} />
         <span className="font-bold">Total Elite Training</span>
