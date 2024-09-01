@@ -34,9 +34,9 @@ export default async function RootLayout({ children }) {
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
           <AuthProvider user={user}>
-            <Header tokens={tokens} />
+            
             {children}
-            <Footer />
+            
           </AuthProvider>
         </div>
       </body>

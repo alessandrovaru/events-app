@@ -1,1 +1,3 @@
-export {Header} from './Header.jsx';
+export { Header } from './Header.jsx';
+
+export { HeaderLogged } from './HeaderLogged.jsx';
