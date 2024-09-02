@@ -25,7 +25,7 @@ export default async function Page() {
   return (
     <main className="flex-1">
       <HeaderLogged tokens={tokens} />
-      <CourseList />
+      <CourseList tokens={tokens}/>
       <Footer />
     </main>
   )
