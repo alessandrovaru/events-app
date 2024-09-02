@@ -9,6 +9,8 @@ import { Testimonials } from "@/components/home/Testimonials"
 import { CallToAction } from "@/components/home/CallToAction/CallToAction"
 
 import Logout from "./Logout";
+import { Header, HeaderLogged } from "@/components/shared/Header";
+import { Footer } from "@/components/shared/Footer";
 
 export default async function Component() {
   const tokens = await getTokens(cookies(), {
@@ -23,24 +25,24 @@ export default async function Component() {
   if (!tokens) {
     return (
       <main className="flex-1">
+        <Header />
         <Hero />
         <WhyChooseUs />
         <Testimonials />
         <CallToAction />
+        <Footer />
       </main>
     )
   }
 
   return (
     <main className="flex-1">
-      <p>
-        Only <strong>{tokens?.decodedToken.email}</strong> holds the magic key to this kingdom!"
-      </p>
-      <Logout email={tokens?.decodedToken.email} />
+      <HeaderLogged tokens={tokens} />
       <Hero />
       <WhyChooseUs />
       <Testimonials />
       <CallToAction />
+      <Footer />
     </main>
   )
 }
