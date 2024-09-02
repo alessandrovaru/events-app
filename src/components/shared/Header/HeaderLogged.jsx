@@ -9,9 +9,7 @@ export const HeaderLogged = async ({tokens}) => {
         <span className="font-bold">Total Elite Training</span>
       </Link>
       <nav className="ml-auto flex gap-4 sm:gap-6">
-        <Link className="py-2 px-4 rounded-lg text-sm font-medium hover:underline underline-offset-4" href="#">
-          Clases
-        </Link>
+        
         <Logout email={tokens?.decodedToken.email}/>
       </nav>
     </header>
