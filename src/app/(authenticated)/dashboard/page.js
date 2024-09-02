@@ -4,7 +4,8 @@ import { cookies } from "next/headers";
 import { clientConfig, serverConfig } from "../../../config";
 import { HeaderLogged } from "@/components/shared/Header";
 import { Footer } from "@/components/shared/Footer";
-import { CourseList } from "@/components/courses/CourseList/CourseList";
+import { CourseList } from "@/components/courses/CourseList";
+import { NextClass } from "@/components/courses/NextClass";
 
 
 export default async function Page() {
@@ -25,6 +26,7 @@ export default async function Page() {
   return (
     <main className="flex-1">
       <HeaderLogged tokens={tokens} />
+      <NextClass tokens={tokens}/>
       <CourseList tokens={tokens}/>
       <Footer />
     </main>
