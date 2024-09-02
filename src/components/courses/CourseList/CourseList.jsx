@@ -28,7 +28,7 @@ export const CourseList = async ({ tokens }) => {
   const sortedCourses = [...enrolledCourses, ...otherCourses];
 
   return (
-    <>
+    <div class="container mx-auto">
       <h2 className="text-3xl font-bold text-white mb-6 ps-6 pt-6">Cursos</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 p-6">
         {sortedCourses.map(course => (
@@ -42,6 +42,6 @@ export const CourseList = async ({ tokens }) => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

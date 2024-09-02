@@ -30,7 +30,7 @@ export const NextClass = async ({ tokens }) => {
   });
 
   return (
-    <>
+    <div class="container mx-auto">
       <h2 className="text-3xl font-bold text-white mb-6 ps-6 pt-6">Tu próxima clase</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 p-6">
         {classes.flatMap(classItem => 
@@ -46,6 +46,6 @@ export const NextClass = async ({ tokens }) => {
           ))
         )}
       </div>
-    </>
+    </div>
   );
 }
