@@ -1,5 +1,8 @@
 import { getFirestore } from "firebase-admin/firestore";
 import { getFirebaseAdminApp } from '@/app/firebase';
+import Image from "next/image";
+
+import logo from "/public/images/artesuave.jpg";
 
 const db = getFirestore(getFirebaseAdminApp());
 
@@ -35,13 +38,18 @@ export const NextClass = async ({ tokens }) => {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 p-6">
         {classes.flatMap(classItem => 
           classItem.days.map(day => (
-            <div key={`${classItem.id}-${day}`} className="course-card p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-              <h2 className="text-2xl font-bold mb-2 text-gray-700">{days[day]}</h2>
-              <p className="text-gray-700 mb-4">{classItem.time}</p>
-              <p className="text-gray-900"><strong></strong> {classItem.location}</p>
-              {days[classItem.today] === days[day] && (
-                <p className="text-green-500 font-bold">Hoy</p>
-              )}
+            <div key={`${classItem.id}-${day}`} className="relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300">
+              <div className="relative z-10">
+                <h2 className="text-2xl font-bold mb-2 text-white">{days[day]}</h2>
+                <span className="text-white mb-4">{classItem.time}</span>
+                <p className="text-white"><strong></strong> {classItem.location}</p>
+                {days[classItem.today] === days[day] && (
+                  <p className="text-green-500 font-bold">Hoy</p>
+                )}
+              </div>
+              <div className="absolute h-full w-full top-0 left-0 bg-red-900 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
+                <Image class="object-cover mix-blend-multiply rounded-lg" src={logo} alt={classItem.courseId.name} fill={true} />
+              </div>
             </div>
           ))
         )}
