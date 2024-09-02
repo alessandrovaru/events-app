@@ -3,7 +3,9 @@
 import { useRouter } from "next/navigation";
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../firebase";
+
 import { useAuth } from "./auth/AuthContext.jsx";
+
 
 
 export default function Logout({ email }) {
