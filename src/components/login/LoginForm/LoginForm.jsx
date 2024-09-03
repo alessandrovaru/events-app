@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { app } from "@/app/auth/firebase";
 
 import {useLoadingCallback} from 'react-loading-hook';
 import { getFirebaseAuth } from "@/app/auth/firebase";
@@ -28,29 +26,29 @@ export function LoginForm() {
     redirectAfterLogin();
   }
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    setError("");
+  // async function handleSubmit(event) {
+  //   event.preventDefault();
+  //   setError("");
 
-    try {
-      const credential = await signInWithEmailAndPassword(
-        getAuth(app),
-        email,
-        password
-      );
-      const idToken = await credential.user.getIdToken();
+  //   try {
+  //     const credential = await signInWithEmailAndPassword(
+  //       getAuth(app),
+  //       email,
+  //       password
+  //     );
+  //     const idToken = await credential.user.getIdToken();
 
-      await fetch("/api/login", {
-        headers: {
-          Authorization: `Bearer ${idToken}`,
-        },
-      });
+  //     await fetch("/api/login", {
+  //       headers: {
+  //         Authorization: `Bearer ${idToken}`,
+  //       },
+  //     });
 
-      router.push("/dashboard");
-    } catch (e) {
-      setError((e).message);
-    }
-  }
+  //     router.push("/dashboard");
+  //   } catch (e) {
+  //     setError((e).message);
+  //   }
+  // }
 
   const [handleLoginWithGoogle, isGoogleLoading, googleError] =
     useLoadingCallback(async () => {
@@ -65,7 +63,6 @@ export function LoginForm() {
           Inicio de sesión
         </h1> */}
         <form
-          onSubmit={handleSubmit}
           className="space-y-4 md:space-y-6"
           action="#"
         >
