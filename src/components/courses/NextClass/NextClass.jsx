@@ -2,7 +2,8 @@ import { getFirestore } from "firebase-admin/firestore";
 import { getFirebaseAdminApp } from '@/app/firebase';
 import Image from "next/image";
 
-import logo from "/public/images/artesuave.jpg";
+import arteSuaveBg from "/public/images/artesuave.jpg";
+import entrenamientoFuncionalBg from "/public/images/main.jpg";
 
 const db = getFirestore(getFirebaseAdminApp());
 
@@ -19,8 +20,15 @@ const days = {
 export const NextClass = async ({ tokens }) => {
   const snapshotClasses = await db.collection('classes').get();
   const snapshotUsers = await db.collection('users').doc(tokens.decodedToken.uid).get();
-
+  const snapshotCourses = await db.collection('courses').get();
+  
   const classes = [];
+  const courses = [];
+  const groupedClasses = {};
+
+  snapshotCourses.forEach(doc => {
+    courses.push({ id: doc.id, ...doc.data() });
+  });
 
   const user = snapshotUsers.data();
   const userCourseIds = user.enrolledCourses.map(course => course._path.segments[1]);
@@ -29,27 +37,51 @@ export const NextClass = async ({ tokens }) => {
     if (!userCourseIds.includes(doc.data().courseId._path.segments[1])) {
       return;
     }
-    classes.push({ id: doc.id, ...doc.data(), today: currentDay });
+    const classItem = { 
+      id: doc.id, 
+      ...doc.data(), 
+      today: currentDay, 
+      courseName: courses.find(course => course.id === doc.data().courseId._path.segments[1]).name 
+    };
+
+    // Group classes by day
+    classItem.days.forEach(day => {
+      if (!groupedClasses[day]) {
+        groupedClasses[day] = [];
+      }
+      groupedClasses[day].push(classItem);
+    });
   });
 
+  // Sort days in correct order (Monday to Sunday)
+  const sortedDays = Object.keys(days).sort((a, b) => a - b);
+
   return (
-    <div class="container mx-auto">
+    <div className="container mx-auto">
       <h2 className="text-3xl font-bold text-white mb-6 ps-6 pt-6">Tu próxima clase</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 p-6">
-        {classes.flatMap(classItem => 
-          classItem.days.map(day => (
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 p-6">
+        {sortedDays.flatMap(day => 
+          groupedClasses[day]?.map(classItem => (
             <div key={`${classItem.id}-${day}`} className="relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300">
               <div className="relative z-10">
                 <h2 className="text-2xl font-bold mb-2 text-white">{days[day]}</h2>
-                <span className="text-white mb-4">{classItem.time}</span>
-                <p className="text-white"><strong></strong> {classItem.location}</p>
+                <span className="text-white mb-4 text-xs">{classItem.time}</span>
+                <p className="text-white text-sm"><strong></strong> {classItem.location}</p>
+                <p>{classItem.courseName}</p>
                 {days[classItem.today] === days[day] && (
-                  <p className="text-green-500 font-bold">Hoy</p>
+                  <p className="text-white font-bold">Hoy</p>
                 )}
               </div>
-              <div className="absolute h-full w-full top-0 left-0 bg-red-900 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
-                <Image class="object-cover mix-blend-multiply rounded-lg" src={logo} alt={classItem.courseId.name} fill={true} />
-              </div>
+              {classItem.courseName === 'Arte Suave' && (
+                <div className="absolute h-full w-full top-0 left-0 bg-red-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
+                  <Image src={arteSuaveBg} className="object-cover mix-blend-darken rounded-lg" alt={classItem.courseId.name} fill={true} />
+                </div>
+              )}
+              {classItem.courseName === 'Entrenamiento Funcional' && (
+                <div className="absolute h-full w-full top-0 left-0 bg-blue-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
+                  <Image src={entrenamientoFuncionalBg} className="object-cover mix-blend-darken rounded-lg" alt={classItem.courseId.name} fill={true} />
+                </div>
+              )}
             </div>
           ))
         )}
