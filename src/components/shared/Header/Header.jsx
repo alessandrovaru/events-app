@@ -9,10 +9,7 @@ export const Header = async () => {
         <span className="font-bold">Total Elite Training</span>
       </Link>
       <nav className="ml-auto flex gap-4 sm:gap-6">
-        <Link className="py-2 px-4 rounded-lg text-sm font-medium hover:underline underline-offset-4" href="#">
-          Clases
-        </Link>
-        <Link className="py-2 px-4 rounded-lg bg-white text-black hover:bg-gray-200 text-sm font-medium" href="/login">
+        <Link className="py-2 px-4 rounded-lg bg-white text-black hover:bg-gray-200 text-sm font-medium text-center" href="/login">
           Iniciar sesión
         </Link>
       </nav>
