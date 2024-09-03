@@ -1,15 +1,28 @@
 import Image from "next/image"
 
+// const data = {
+//   title: "Unleash Your Inner Fighter",
+//   description: "Join Total Elite Training and master the art of MMA. World-class coaches, state-of-the-art facilities, and a supportive community await you.",
+//   buttons: [
+//     { text: "Get Started", variant: "primary" },
+//     { text: "View Schedule", variant: "outline" }
+//   ],
+//   image: {
+//     src: "/images/main.jpg",
+//     alt: "Hero Image"
+//   }
+// }
+
 const data = {
-  title: "Unleash Your Inner Fighter",
-  description: "Join Total Elite Training and master the art of MMA. World-class coaches, state-of-the-art facilities, and a supportive community await you.",
+  title: "Desata Tu Luchador Interior",
+  description: "Únete a Total Elite Training y domina el arte del MMA. Entrenadores de clase mundial, instalaciones de última generación y una comunidad de apoyo te esperan.",
   buttons: [
-    { text: "Get Started", variant: "primary" },
-    { text: "View Schedule", variant: "outline" }
+    { text: "Empieza Ahora", variant: "primary" },
+    { text: "Horarios", variant: "outline" }
   ],
   image: {
     src: "/images/main.jpg",
-    alt: "Hero Image"
+    alt: "Imagen Principal"
   }
 }
 
