@@ -11,6 +11,7 @@ import { CallToAction } from "@/components/home/CallToAction/CallToAction"
 import Logout from "./Logout";
 import { Header, HeaderLogged } from "@/components/shared/Header";
 import { Footer } from "@/components/shared/Footer";
+import { Instructors } from "@/components/home/Instructors";
 
 export default async function Component() {
   const tokens = await getTokens(cookies(), {
@@ -29,6 +30,7 @@ export default async function Component() {
         <Hero />
         <WhyChooseUs />
         <Testimonials />
+        <Instructors />
         <CallToAction />
         <Footer />
       </main>
