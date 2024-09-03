@@ -56,35 +56,45 @@ export const NextClass = async ({ tokens }) => {
   // Sort days in correct order (Monday to Sunday)
   const sortedDays = Object.keys(days).sort((a, b) => a - b);
 
+  // Limit to 6 classes
+  let classCount = 0;
+  const limitedClasses = sortedDays.flatMap(day => {
+    if (classCount >= 6) return [];
+    const dayClasses = groupedClasses[day] || [];
+    const remainingSlots = 6 - classCount;
+    const classesToShow = dayClasses.slice(0, remainingSlots);
+    classCount += classesToShow.length;
+    return classesToShow.map(classItem => ({ ...classItem, day }));
+  });
+
+
   return (
     <div className="container mx-auto">
       <h2 className="text-3xl font-bold text-white mb-6 ps-6 pt-6">Tu próxima clase</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 p-6">
-        {sortedDays.flatMap(day => 
-          groupedClasses[day]?.map(classItem => (
-            <div key={`${classItem.id}-${day}`} className="relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300">
-              <div className="relative z-10">
-                <h2 className="text-2xl font-bold mb-2 text-white">{days[day]}</h2>
-                <span className="text-white mb-4 text-xs">{classItem.time}</span>
-                <p className="text-white text-sm"><strong></strong> {classItem.location}</p>
-                <p>{classItem.courseName}</p>
-                {days[classItem.today] === days[day] && (
-                  <p className="text-white font-bold">Hoy</p>
-                )}
-              </div>
-              {classItem.courseName === 'Arte Suave' && (
-                <div className="absolute h-full w-full top-0 left-0 bg-red-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
-                  <Image src={arteSuaveBg} className="object-cover mix-blend-darken rounded-lg" alt={classItem.courseId.name} fill={true} />
-                </div>
-              )}
-              {classItem.courseName === 'Entrenamiento Funcional' && (
-                <div className="absolute h-full w-full top-0 left-0 bg-blue-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
-                  <Image src={entrenamientoFuncionalBg} className="object-cover mix-blend-darken rounded-lg" alt={classItem.courseId.name} fill={true} />
-                </div>
+      {limitedClasses.map(classItem => (
+          <div key={`${classItem.id}-${classItem.day}`} className="relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300">
+            <div className="relative z-10">
+              <h2 className="text-2xl font-bold mb-2 text-white">{days[classItem.day]}</h2>
+              <span className="text-white mb-4 text-xs">{classItem.time}</span>
+              <p className="text-white text-sm"><strong></strong> {classItem.location}</p>
+              <p>{classItem.courseName}</p>
+              {days[classItem.today] === days[classItem.day] && (
+                <p className="text-white font-bold">Hoy</p>
               )}
             </div>
-          ))
-        )}
+            {classItem.courseName === 'Arte Suave' && (
+              <div className="absolute h-full w-full top-0 left-0 bg-red-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
+                <Image src={arteSuaveBg} className="object-cover mix-blend-darken rounded-lg" alt={classItem.courseId.name} fill={true} />
+              </div>
+            )}
+            {classItem.courseName === 'Entrenamiento Funcional' && (
+              <div className="absolute h-full w-full top-0 left-0 bg-blue-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
+                <Image src={entrenamientoFuncionalBg} className="object-cover mix-blend-darken rounded-lg" alt={classItem.courseId.name} fill={true} />
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
