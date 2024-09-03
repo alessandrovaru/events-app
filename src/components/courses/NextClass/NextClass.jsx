@@ -53,8 +53,13 @@ export const NextClass = async ({ tokens }) => {
     });
   });
 
-  // Sort days in correct order (Monday to Sunday)
-  const sortedDays = Object.keys(days).sort((a, b) => a - b);
+  // Get current day
+  const currentDay = new Date().getDay();
+
+  // Sort days starting from the current day
+  const sortedDays = Object.keys(days)
+    .map(Number)
+    .sort((a, b) => (a - currentDay + 7) % 7 - (b - currentDay + 7) % 7);
 
   // Limit to 6 classes
   let classCount = 0;
@@ -66,7 +71,6 @@ export const NextClass = async ({ tokens }) => {
     classCount += classesToShow.length;
     return classesToShow.map(classItem => ({ ...classItem, day }));
   });
-
 
   return (
     <div className="container mx-auto">
