@@ -1,12 +1,12 @@
 import Link from "next/link";
 
 const data = {
-  title: "Ready to Elevate Your Training?",
-  description: "Join Total Elite Training today and start your journey to becoming an elite MMA fighter.",
-  placeholder: "Enter your email",
-  buttonText: "Get Started",
+  title: "¿Listo para Elevar tu Entrenamiento?",
+  description: "Únete a Total Elite Training hoy y comienza tu viaje para convertirte en un luchador de MMA de élite.",
+  placeholder: "Introduce tu correo electrónico",
+  buttonText: "Comenzar",
   termsLink: {
-    text: "Terms & Conditions",
+    text: "Términos y Condiciones",
     href: "#"
   }
 };

@@ -2,7 +2,7 @@
 import { useAuth } from "@/app/auth/AuthContext";
 import Image from "next/image";
 
-export const ProfileCard = async () => {
+export const ProfileCard = () => {
   const { user } = useAuth();
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
