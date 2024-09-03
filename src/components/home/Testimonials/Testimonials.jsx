@@ -1,17 +1,17 @@
 const data = {
-  title: "What Our Fighters Say",
+  title: "Lo Que Dicen Nuestros Luchadores",
   testimonials: [
     {
-      quote: "Total Elite Training has transformed my skills and confidence. The coaches here are world-class!",
-      author: "Sarah J., Amateur MMA Fighter"
+      quote: "Total Elite Training ha transformado mis habilidades y confianza. ¡Los entrenadores aquí son de clase mundial!",
+      author: "Sarah J., Luchadora Amateur de MMA"
     },
     {
-      quote: "I've never felt stronger or more disciplined. This gym is like a second home to me.",
-      author: "Mike T., BJJ Enthusiast"
+      quote: "Nunca me he sentido más fuerte o más disciplinado. Este gimnasio es como un segundo hogar para mí.",
+      author: "Mike T., Entusiasta de BJJ"
     },
     {
-      quote: "From beginner to competitor, Total Elite Training has supported me every step of the way.",
-      author: "Alex R., Muay Thai Practitioner"
+      quote: "Desde principiante hasta competidor, Total Elite Training me ha apoyado en cada paso del camino.",
+      author: "Alex R., Practicante de Muay Thai"
     }
   ]
 };
@@ -24,7 +24,7 @@ export const Testimonials = async () => {
     <section className="w-full py-12 md:py-24 lg:py-32 flex items-center justify-center">
       <div className="container px-4 md:px-6">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">{title}</h2>
-        <div className={`grid gap-10 sm:grid-cols-2 md:grid-cols-${colCount}`}>
+        <div className={`grid gap-10 sm:grid-cols-3 md:grid-cols-${colCount}`}>
           {testimonials.map((testimonial, index) => (
             <div key={index} className="flex flex-col items-center space-y-2 border p-4 rounded-lg">
               <p className="text-sm text-gray-500 italic">&lsquo;{testimonial.quote}&lsquo;</p>
