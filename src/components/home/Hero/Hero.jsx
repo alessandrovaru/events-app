@@ -53,7 +53,7 @@ export const Hero = async () => {
               ))}
             </div>
           </div>
-          <div className="relative flex justify-center md:justify-end h-full w-full order-first sm:order-last">
+          <div className="relative flex justify-center md:justify-end h-full w-full order-first sm:order-last h-[300px] md:h-[400px] lg:h-[500px]">
             <Image className="object-cover object-center rounded-lg" src={image.src} alt={image.alt} fill />
           </div>
         </div>
