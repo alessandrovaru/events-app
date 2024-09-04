@@ -30,7 +30,7 @@ export const Hero = async () => {
   const { title, description, buttons, image } = data;
 
   return (
-    <section className="w-full h-[75dvh] bg-black text-white flex items-center justify-center">
+    <section className="w-full min-h-[75dvh] bg-black text-white flex items-center justify-center">
       <div className="container px-4 md:px-6 h-full w-full flex items-center justify-center">
         <div className="grid h-full grid-cols-1 md:grid-cols-2 gap-6 items-center py-6 md:py-12 lg:py-24">
           <div className="flex flex-col space-y-4">
@@ -53,7 +53,7 @@ export const Hero = async () => {
               ))}
             </div>
           </div>
-          <div className="relative flex justify-center md:justify-end h-full w-full order-first sm:order-last h-[300px] md:h-[400px] lg:h-[500px]">
+          <div className="relative flex justify-center md:justify-end w-full order-first sm:order-last h-[200px] md:h-[400px] lg:h-[500px]">
             <Image className="object-cover object-center rounded-lg" src={image.src} alt={image.alt} fill />
           </div>
         </div>
