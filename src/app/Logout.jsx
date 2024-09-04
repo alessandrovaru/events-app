@@ -9,7 +9,7 @@ import Link from "next/link";
 
 
 
-export default function Logout({ email }) {
+export default function Logout({ email, noProfile }) {
   const router = useRouter();
 
   const {user} = useAuth();
@@ -24,15 +24,17 @@ export default function Logout({ email }) {
 
   return (
     <>
-      <Link
-        href="/profile"
-        className="text-white bg-red-900 bg-red-950 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-900 dark:hover:bg-red-950 dark:focus:ring-primary-800"
-      >
-        {user.displayName}
-      </Link>
+      {!noProfile && (
+        <Link
+          href="/profile"
+          className="text-white bg-red-900 bg-red-950 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-900 dark:hover:bg-red-950 dark:focus:ring-primary-800 mr-4"
+        >
+          {user.displayName}
+        </Link>
+      )}
       <button
         onClick={handleLogout}
-        className="text-white bg-red-900 bg-red-950 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-900 dark:hover:bg-red-950 dark:focus:ring-primary-800"
+        className="text-white bg-red-900 bg-red-950 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-900 dark:hover:bg-red-950 dark:focus:ring-primary-800 mr-4"
       >
         Logout
       </button>
