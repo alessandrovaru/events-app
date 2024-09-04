@@ -4,6 +4,8 @@ import Image from "next/image";
 
 import arteSuaveBg from "/public/images/artesuave.jpg";
 import entrenamientoFuncionalBg from "/public/images/main.jpg";
+import mmaBg from "/public/images/genier.jpg";
+import { LockKeyhole } from "lucide-react";
 
 const db = getFirestore(getFirebaseAdminApp());
 
@@ -31,10 +33,10 @@ export const NextClass = async ({ tokens }) => {
   });
 
   const user = snapshotUsers.data();
-  const userCourseIds = user.enrolledCourses.map(course => course._path.segments[1]);
+  const userCourseIds = user.enrolledCourses?.map(course => course._path.segments[1]);
   snapshotClasses.forEach(doc => {
     const currentDay = new Date().getDay();
-    if (!userCourseIds.includes(doc.data().courseId._path.segments[1])) {
+    if (!userCourseIds?.includes(doc.data().courseId._path.segments[1])) {
       return;
     }
     const classItem = { 
@@ -75,8 +77,87 @@ export const NextClass = async ({ tokens }) => {
   return (
     <div className="container mx-auto">
       <h2 className="text-3xl font-bold text-white mb-6 ps-6 pt-6">Tu próxima clase</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 p-6">
-      {limitedClasses.map(classItem => (
+      <div className="relative grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 p-6">
+      {limitedClasses.length === 0 ? (
+        <>
+        <div className="absolute h-full w-full top-0 left-0 bg-black bg-opacity-80 z-0 transition-opacity duration-300 flex items-center justify-center z-20">
+          <LockKeyhole />
+        </div>
+          <div className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300`}>
+            <div className="relative z-10">
+              <h2 className="text-2xl font-bold mb-2 text-white">Lunes</h2>
+              <span className="text-white mb-4 text-xs">6:00PM - 8:00PM</span>
+              <p className="text-white text-sm"><strong></strong> Colinas de los ruices</p>
+              <p>Brazilian Jiu-jitsu</p>
+              
+            </div>
+            <div className="absolute h-full w-full top-0 left-0 bg-red-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
+              <Image src={arteSuaveBg} className="object-cover mix-blend-darken rounded-lg" alt={'foto'} fill={true} />
+            </div>
+          </div>
+          <div className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300`}>
+            <div className="relative z-10">
+              <h2 className="text-2xl font-bold mb-2 text-white">Martes</h2>
+              <span className="text-white mb-4 text-xs">6:00PM - 8:00PM</span>
+              <p className="text-white text-sm"><strong></strong> Colinas de los ruices</p>
+              <p>Brazilian Jiu-jitsu</p>
+              
+            </div>
+            <div className="absolute h-full w-full top-0 left-0 bg-red-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
+              <Image src={arteSuaveBg} className="object-cover mix-blend-darken rounded-lg" alt={'foto'} fill={true} />
+            </div>
+          </div>
+          <div className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300`}>
+            <div className="relative z-10">
+              <h2 className="text-2xl font-bold mb-2 text-white">Martes</h2>
+              <span className="text-white mb-4 text-xs">Todo el día</span>
+              <p className="text-white text-sm"><strong></strong> Colinas de los ruices</p>
+              <p>Entrenamiento Corporal</p>
+              
+            </div>
+            <div className="absolute h-full w-full top-0 left-0 bg-blue-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
+              <Image src={entrenamientoFuncionalBg} className="object-cover mix-blend-darken rounded-lg" alt={'frank'} fill={true} />
+            </div>
+          </div>
+          <div className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300`}>
+            <div className="relative z-10">
+              <h2 className="text-2xl font-bold mb-2 text-white">Martes</h2>
+              <span className="text-white mb-4 text-xs">Todo el día</span>
+              <p className="text-white text-sm"><strong></strong> Colinas de los ruices</p>
+              <p>MMA</p>
+              
+            </div>
+            <div className="absolute h-full w-full top-0 left-0 bg-green-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
+              <Image src={mmaBg} className="object-cover mix-blend-darken rounded-lg" alt={'frank'} fill={true} />
+            </div>
+          </div>
+          <div className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300`}>
+            <div className="relative z-10">
+              <h2 className="text-2xl font-bold mb-2 text-white">Miércoles</h2>
+              <span className="text-white mb-4 text-xs">6:00PM - 8:00PM</span>
+              <p className="text-white text-sm"><strong></strong> Colinas de los ruices</p>
+              <p>Brazilian Jiu-jitsu</p>
+              
+            </div>
+            <div className="absolute h-full w-full top-0 left-0 bg-red-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
+              <Image src={arteSuaveBg} className="object-cover mix-blend-darken rounded-lg" alt={'foto'} fill={true} />
+            </div>
+          </div>
+          <div className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300`}>
+            <div className="relative z-10">
+              <h2 className="text-2xl font-bold mb-2 text-white">Miércoles</h2>
+              <span className="text-white mb-4 text-xs">Todo el día</span>
+              <p className="text-white text-sm"><strong></strong> Colinas de los ruices</p>
+              <p>Entrenamiento Corporal</p>
+              
+            </div>
+            <div className="absolute h-full w-full top-0 left-0 bg-blue-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300">
+              <Image src={entrenamientoFuncionalBg} className="object-cover mix-blend-darken rounded-lg" alt={'frank'} fill={true} />
+            </div>
+          </div>
+        </>
+      ) : (
+        limitedClasses.map(classItem => (
           <div key={`${classItem.id}-${classItem.day}`} className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300 ${days[classItem.today] === days[classItem.day] ? 'animate-pulse ' : ''}`}>
             <div className="relative z-10">
               <h2 className="text-2xl font-bold mb-2 text-white">{days[classItem.day]}</h2>
@@ -98,7 +179,8 @@ export const NextClass = async ({ tokens }) => {
               </div>
             )}
           </div>
-        ))}
+        ))
+      )}
       </div>
     </div>
   );

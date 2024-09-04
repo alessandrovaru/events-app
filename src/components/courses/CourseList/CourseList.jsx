@@ -9,7 +9,7 @@ export const CourseList = async ({ tokens }) => {
   const snapshotUsers = await db.collection('users').doc(tokens.decodedToken.uid).get();
   const courses = [];
   const user = snapshotUsers.data();
-  const userCourseIds = user.enrolledCourses.map(course => course._path.segments[1]);
+  const userCourseIds = user.enrolledCourses?.map(course => course._path.segments[1]);
 
   snapshotCourses.forEach(doc => {
     courses.push({ id: doc.id, ...doc.data() });
@@ -19,7 +19,7 @@ export const CourseList = async ({ tokens }) => {
   const otherCourses = [];
 
   courses.forEach(course => {
-    if (userCourseIds.includes(course.id)) {
+    if (userCourseIds?.includes(course.id)) {
       enrolledCourses.push(course);
     } else {
       otherCourses.push(course);
@@ -40,7 +40,7 @@ export const CourseList = async ({ tokens }) => {
             <span className="text-gray-500 mb-4 text-sm">{course.discipline}</span>
             <p className="text-gray-700 mb-4">{course.description.slice(0, 46)}{course.description.length > 30 ? '...' : ''}</p>
             
-            {!userCourseIds.includes(course.id) ? (
+            {!userCourseIds?.includes(course.id) ? (
               <>
                 <div className="absolute bg-black h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
                   <LockKeyhole />
