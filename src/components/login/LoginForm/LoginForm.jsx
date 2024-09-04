@@ -9,6 +9,10 @@ import { getGoogleProvider, loginWithProvider, loginWithProviderUsingRedirect } 
 import { loginWithCredential } from "@/api";
 import { useRedirectParam } from "@/app/shared/useRedirectParam";
 import { useRedirectAfterLogin } from "@/app/shared/useRedirectAfterLogin";
+import Image from "next/image";
+
+import logo from "/public/images/logo.jpg";
+import Link from "next/link";
 
 export function LoginForm() {
   const [email, setEmail] = useState("");
@@ -57,11 +61,15 @@ export function LoginForm() {
       await handleLogin(await loginWithProvider(auth, getGoogleProvider(auth)));
     });
   return(
-    <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-800 dark:border-white-700">
-      <div className="p-6 ">
-        {/* <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-black">
+    <div className="w-full rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-800">
+      <div className="p-6">
+        <Image src={logo} alt="logo" width={100} height={100} />
+        <h1 className="text-5xl font-bold leading-tight tracking-tight text-gray-900 md:text-6xl text-white mb-3">
+          Total Elite Training
+        </h1>
+        <h2 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-white">
           Inicio de sesión
-        </h1> */}
+        </h2>
         <form
           className="space-y-4 md:space-y-6"
           action="#"
@@ -130,10 +138,24 @@ export function LoginForm() {
           loading={isGoogleLoading}
           disabled={isGoogleLoading}
           onClick={handleLoginWithGoogle} 
-          className="w-full text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-primary-800"
+          className="w-full text-black bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mt-3"
         >
-            Sign in with Google
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="18" height="18" viewBox="0 0 48 48">
+              <path fill="#fbc02d" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12	s5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20	s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path><path fill="#e53935" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039	l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path><path fill="#4caf50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36	c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path><path fill="#1565c0" d="M43.611,20.083L43.595,20L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571	c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
+            </svg>
+            <span className="ms-3">
+              Inicia sesión con Google
+            </span>
           </button>
+          <Link 
+          href={"/"}
+          className="w-full text-black bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mt-3"
+        >
+          
+            <span className="ms-3">
+              Home
+            </span>
+          </Link>
       </div>
     </div>
   )

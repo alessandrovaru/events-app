@@ -77,7 +77,7 @@ export const NextClass = async ({ tokens }) => {
       <h2 className="text-3xl font-bold text-white mb-6 ps-6 pt-6">Tu próxima clase</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 p-6">
       {limitedClasses.map(classItem => (
-          <div key={`${classItem.id}-${classItem.day}`} className="relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300">
+          <div key={`${classItem.id}-${classItem.day}`} className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300 ${days[classItem.today] === days[classItem.day] ? 'animate-pulse ' : ''}`}>
             <div className="relative z-10">
               <h2 className="text-2xl font-bold mb-2 text-white">{days[classItem.day]}</h2>
               <span className="text-white mb-4 text-xs">{classItem.time}</span>
