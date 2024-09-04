@@ -28,7 +28,6 @@ export const CourseList = async ({ tokens }) => {
 
   const sortedCourses = [...enrolledCourses, ...otherCourses];
 
-  console.log(courses);
 
   return (
     <div className="container mx-auto">
