@@ -19,12 +19,12 @@ const instructorsData = [
   {
     name: "Dino Gallina",
     image: "/images/dino.jpg",
-    description: "Entrenadora de Muay Thai y Boxeo"
+    description: "Entrenador de Muay Thai y Boxeo"
   },
   {
     name: "Daniel Gallina",
     image: "/images/daniel.jpg",
-    description: "Entrenadora de Muay Thai y Boxeo"
+    description: "Entrenador de Muay Thai y Boxeo"
   }
 ];
 
@@ -35,10 +35,10 @@ export function Instructors() {
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Nuestros Instructores</h2>
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-5">
           {instructorsData.map((instructor, index) => (
-            <div key={index} className="relative flex flex-col items-start justify-end space-y-2 border-gray-800 p-4 bg-gray-700 h-[600px] rounded-lg hover:bg-gray-200 transition duration-300 cursor-pointer">
+            <div key={index} className="relative flex flex-col items-start justify-end space-y-2 border-gray-800 p-4 bg-gray-400 h-[600px] rounded-lg hover:bg-gray-200 transition duration-300 cursor-pointer">
               <Image src={instructor.image} alt={`Instructor ${index + 1}`} className="h-full w-full mb-2 object-cover rounded-lg z-0 mix-blend-multiply" fill />
               <h2 className="text-5xl font-bold z-10">{instructor.name}</h2>
-              <p className="text-sm text-gray-500  z-10">{instructor.description}</p>
+              <p className="text-sm text-white  z-10">{instructor.description}</p>
             </div>
           ))}
         </div>
