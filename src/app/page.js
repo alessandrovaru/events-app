@@ -12,6 +12,8 @@ import Logout from "./Logout";
 import { Header, HeaderLogged } from "@/components/shared/Header";
 import { Footer } from "@/components/shared/Footer";
 import { Instructors } from "@/components/home/Instructors";
+import { Champs } from "@/components/home/Champs";
+import { Banner } from "@/components/home/Banner";
 
 export default async function Component() {
   const tokens = await getTokens(cookies(), {
@@ -31,6 +33,8 @@ export default async function Component() {
         <WhyChooseUs />
         <Testimonials />
         <Instructors />
+        <Champs />
+        <Banner />
         <CallToAction />
         <Footer />
       </main>
@@ -43,6 +47,8 @@ export default async function Component() {
       <Hero />
       <WhyChooseUs />
       <Testimonials />
+      <Champs />
+      <Banner />
       <CallToAction />
       <Footer />
     </main>
