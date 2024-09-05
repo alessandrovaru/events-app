@@ -32,7 +32,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className={inter.className}>
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-black">
           <AuthProvider user={user}>
             
             {children}
