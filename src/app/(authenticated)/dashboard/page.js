@@ -4,8 +4,8 @@ import { cookies } from "next/headers";
 import { clientConfig, serverConfig } from "../../../config";
 import { HeaderLogged } from "@/components/shared/Header";
 import { Footer } from "@/components/shared/Footer";
-import { CourseList } from "@/components/courses/CourseList";
-import { NextClass } from "@/components/courses/NextClass";
+import { CourseList } from "@/components/dashboard/courses/CourseList";
+import { NextClass } from "@/components/dashboard/courses/NextClass";
 
 
 export default async function Page() {
