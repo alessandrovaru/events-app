@@ -2,10 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { getAuth, signOut } from "firebase/auth";
-import { app } from "../firebase";
 
 import { useAuth } from "./auth/AuthContext.jsx";
 import Link from "next/link";
+import { getFirebaseApp } from "./auth/firebase";
 
 
 
@@ -15,7 +15,7 @@ export default function Logout({ email, noProfile }) {
   const {user} = useAuth();
 
   async function handleLogout() {
-    await signOut(getAuth(app));
+    await signOut(getAuth(getFirebaseApp()));
 
     await fetch("/api/logout");
 

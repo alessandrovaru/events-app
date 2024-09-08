@@ -3,8 +3,8 @@
 import { FormEvent, useState } from "react";
 import Link from "next/link";
 import { getAuth, createUserWithEmailAndPassword,  signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { app } from "../../firebase";
 import { useRouter } from "next/navigation";
+import { getFirebaseApp } from "../auth/firebase";
 
 
 
@@ -28,7 +28,7 @@ export default function Register() {
     }
 
     try {
-      await createUserWithEmailAndPassword(getAuth(app), email, password);
+      await createUserWithEmailAndPassword(getAuth(getFirebaseApp), email, password);
       router.push("/login");
     } catch (e) {
       setError((e).message);

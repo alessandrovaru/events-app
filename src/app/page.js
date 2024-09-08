@@ -14,6 +14,8 @@ import { Footer } from "@/components/shared/Footer";
 import { Instructors } from "@/components/home/Instructors";
 import { Champs } from "@/components/home/Champs";
 import { Banner } from "@/components/home/Banner";
+import listData from "@/firebase/firestore/listData";
+import listStorageData from "@/firebase/storage/listStorageData";
 
 export default async function Component() {
   const tokens = await getTokens(cookies(), {
@@ -22,6 +24,10 @@ export default async function Component() {
     cookieSignatureKeys: serverConfig.cookieSignatureKeys,
     serviceAccount: serverConfig.serviceAccount,
   });
+
+  // const images = await listStorageData("images");
+
+  // console.log(images);
 
   
 
