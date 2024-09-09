@@ -1,17 +1,17 @@
-import { getStorage } from "firebase-admin/storage";
+import { getFirebaseApp } from "@/app/auth/firebase";
+import { getFirestore } from "firebase/firestore";
 
-const storage = getStorage();
+import { collection, getDocs } from "firebase/firestore"; 
 
-async function listStorageData(storage_folder) {
-  const bucket = storage.bucket(); // Access the default bucket
-  try {
-    const [files] = await bucket.getFiles({ prefix: storage_folder }); // List files with the folder prefix
-    const items = files.map(file => ({ label: file.name, value: file.name }));
-    return items;
-  } catch (error) {
-    console.error("Error fetching items", error);
-    return [];
-  }
+
+const db = getFirestore(getFirebaseApp());
+
+export default async function listData(collection_name) {
+  const querySnapshot = await getDocs(collection(db, collection_name));
+  let items = [];
+  querySnapshot.forEach((doc) => {
+    items.push(doc.data())
+  });
+  return items;
 }
 
-export default listStorageData;
