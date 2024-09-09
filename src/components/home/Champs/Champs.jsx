@@ -1,14 +1,18 @@
+import listData from "@/firebase/firestore/listData";
 import Image from "next/image";
 
-const champsData = [
-  {
-    name: "Barbara Felizola",
-    image: "/images/barb.jpg",
-    description: "Medalla de oro en el World Master de Jiu-Jitsu 2024"
-  }
-];
+// const champsData = [
+//   {
+//     name: "Barbara Felizola",
+//     image: "/images/barb.jpg",
+//     description: "Medalla de oro en el World Master de Jiu-Jitsu 2024"
+//   }
+// ];
 
-export function Champs() {
+export async function Champs() {
+
+  const champsData = await listData("champs");
+  console.log(champsData);
   return (
     <section className="w-full py-12 md:py-24 lg:py-32  flex items-center justify-center bg-black">
       <div className="container px-4 md:px-6 text white">
