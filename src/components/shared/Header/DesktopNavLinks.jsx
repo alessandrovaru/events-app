@@ -1,21 +1,10 @@
 import Logout from '@/app/Logout';
-import listData from '@/firebase/firestore/listData';
+import useAdminStatus from '@/hooks/useAdminStatus';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
 export default function DesktopNavLinks({ email, uid }) {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const isAdmin = useAdminStatus(uid);
 
-  useEffect(() => {
-    async function fetchDbUser() {
-      const users = await listData('users');
-      const currentUser = users.find(user => user.id === uid);
-      if (currentUser && currentUser.role === 'admin') {
-        setIsAdmin(true);
-      }
-    }
-    fetchDbUser();
-  }, [uid]);
 
   return (
     <ul className="absolute right-0 flex flex-row space-x-6">
