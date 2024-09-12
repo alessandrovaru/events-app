@@ -46,6 +46,7 @@ export default async function Component() {
       <Hero />
       <WhyChooseUs />
       <Testimonials />
+      <Instructors />
       <Champs />
       <Banner />
       <CallToAction />
