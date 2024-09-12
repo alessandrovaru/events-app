@@ -20,8 +20,8 @@ export async function Champs() {
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-5">
           {champsData.map((champ, index) => (
             <div key={index} className="relative flex flex-col items-start justify-end space-y-2 border-gray-800 p-4 bg-gray-400 h-[600px] rounded-lg hover:bg-gray-200 transition duration-300 cursor-pointer">
-              <Image src={champ.image} alt={`Champ ${index + 1}`} className="h-full w-full mb-2 object-cover rounded-lg z-0 mix-blend-multiply" fill />
-              <h2 className="text-3xl font-bold z-10 text-white">{champ.name}</h2>
+              <Image src={champ.image_url} alt={`Champ ${index + 1}`} className="h-full w-full mb-2 object-cover rounded-lg z-0 mix-blend-multiply" fill />
+              <h2 className="text-3xl font-bold z-10 text-white">{champ.first_name + " " + champ.last_name}</h2>
               <p className="text-sm text-white  z-10">{champ.description}</p>
             </div>
           ))}
