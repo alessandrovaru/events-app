@@ -15,6 +15,16 @@ const days = {
   6: 'Sábado'
 };
 
+const colors = {
+  red: 'bg-red-700',
+  blue: 'bg-blue-700',
+  green: 'bg-green-700',
+  yellow: 'bg-yellow-700',
+  purple: 'bg-purple-700',
+  pink: 'bg-pink-700',
+  orange: 'bg-orange-700',
+}
+
 export const NextClass = async ({ tokens }) => {
   const snapshotUsers = await db.collection('users').doc(tokens.decodedToken.uid).get();
   const snapshotCourses = await db.collection('courses').get();
@@ -110,7 +120,7 @@ export const NextClass = async ({ tokens }) => {
                 <p className="text-white font-bold">Hoy</p>
               )}
             </div>
-            <div className={`absolute h-full w-full top-0 left-0 bg-${classItem.color}-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300`}>
+            <div className={`absolute h-full w-full top-0 left-0 ${colors[classItem.color]} bg-opacity-90 rounded-lg z-0 transition-opacity duration-300`}>
               <Image src={classItem.image_url} className="object-cover mix-blend-darken rounded-lg" alt={classItem.name} fill={true} />
             </div>
           </div>
