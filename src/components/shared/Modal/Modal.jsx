@@ -130,8 +130,6 @@ export const Modal = ({ isEditForm, course }) => {
     }
   }
   
-
-    
     
 
   if(isEditForm) {

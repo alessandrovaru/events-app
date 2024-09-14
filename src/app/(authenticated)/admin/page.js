@@ -6,6 +6,8 @@ import { HeaderLogged } from "@/components/shared/Header";
 import { Footer } from "@/components/shared/Footer";
 import { CourseList } from "@/components/dashboard/courses/CourseList";
 import { NextClass } from "@/components/dashboard/courses/NextClass";
+import { Instructors } from "@/components/home/Instructors";
+import { AdminInstructors } from "@/components/admin/instructors/AdminInstructors";
 
 
 export default async function Page() {
@@ -27,7 +29,7 @@ export default async function Page() {
     <main className="flex-1">
       <HeaderLogged tokens={tokens} />
         <CourseList tokens={tokens}/>
-
+        <AdminInstructors tokens={tokens}/>
       <Footer />
     </main>
   )
