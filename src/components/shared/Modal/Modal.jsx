@@ -35,7 +35,7 @@ export const Modal = ({ isEditForm, course }) => {
     const token = user.idToken
 
     try {
-      const response = await fetch('/api/addCourse', {
+      const response = await fetch('/api/courses/addCourse', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export const Modal = ({ isEditForm, course }) => {
     const token = user.idToken
 
     try {
-      const response = await fetch('/api/editCourse', {
+      const response = await fetch('/api/courses/editCourse', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ export const Modal = ({ isEditForm, course }) => {
     const token = user.idToken;
 
     try {
-      const response = await fetch('/api/deleteCourse', {
+      const response = await fetch('/api/courses/deleteCourse', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
