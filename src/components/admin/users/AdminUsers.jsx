@@ -1,6 +1,8 @@
 'use client'
 
 import { useAuth } from "@/app/auth/AuthContext";
+import { AdminUsersModal } from "@/components/shared/Modal";
+import { PlusIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -13,7 +15,7 @@ const users = [
 
 export function AdminUsers(){
   const [usersData, setUsersData] = useState([]);
-  const [Courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState([]);
 
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -110,7 +112,7 @@ export function AdminUsers(){
                 <td className="py-2 px-4 border">{new Date(user.createdAt).toLocaleString()}</td>
                 <td className="py-2 px-4 border">{new Date(user.lastLoginAt).toLocaleString()}</td>
                 <td className="px-4 border">
-                  {Courses
+                  {courses
                     .filter(course => user.enrolledCourses
                     ?.map(course => course)
                     .includes(course.id))
@@ -120,9 +122,9 @@ export function AdminUsers(){
                       </div>
                     ))
                   }
-                  
-                    
-                  
+                  {isAdmin ? ( 
+                    <AdminUsersModal isEditForm={true} userData={user} courses={courses} />
+                  ) : null}
                 </td>
               </tr>
             ))}
