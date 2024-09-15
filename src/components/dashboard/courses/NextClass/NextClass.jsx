@@ -37,7 +37,7 @@ export const NextClass = async ({ tokens }) => {
   });
 
   const user = snapshotUsers.data();
-  const userCourseIds = user.enrolledCourses?.map(course => course._path.segments[1]);
+  const userCourseIds = user.enrolledCourses
 
   courses.forEach(course => {
     if (!userCourseIds?.includes(course.id)) {

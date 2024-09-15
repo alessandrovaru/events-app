@@ -10,7 +10,7 @@ export const CourseList = async ({ tokens }) => {
   const snapshotUsers = await db.collection('users').doc(tokens.decodedToken.uid).get();
   const courses = [];
   const user = snapshotUsers.data();
-  const userCourseIds = user.enrolledCourses?.map(course => course._path.segments[1]);
+  const userCourseIds = user.enrolledCourses
 
   const isAdmin = user.role === 'admin';
 

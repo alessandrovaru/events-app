@@ -110,22 +110,9 @@ export function AdminUsers(){
                 <td className="py-2 px-4 border">{new Date(user.createdAt).toLocaleString()}</td>
                 <td className="py-2 px-4 border">{new Date(user.lastLoginAt).toLocaleString()}</td>
                 <td className="px-4 border">
-                  {/* {user.enrolledCourses ? user.enrolledCourses.map(course => course._path.segments[1]).join(', ') : 'None'} */}
-                  {/* make it work with the courses data to show the course names
-                   */}
-                  {/* {Courses
-                    .filter(course => user.enrolledCourses
-                    ?.map(course => course._path.segments[1])
-                    .includes(course.id))
-                    .map(course => course.name)
-                    .join(', ')
-                  } */}
-{/* 
-                  make that be render spans which look like a tag */}
-
                   {Courses
                     .filter(course => user.enrolledCourses
-                    ?.map(course => course._path.segments[1])
+                    ?.map(course => course)
                     .includes(course.id))
                     .map(course => (
                       <div key={course.id} className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full mr-2 w-auto inline-block mt-2 mb-2">
