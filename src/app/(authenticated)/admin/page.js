@@ -8,6 +8,7 @@ import { CourseList } from "@/components/dashboard/courses/CourseList";
 import { NextClass } from "@/components/dashboard/courses/NextClass";
 import { AdminInstructors } from "@/components/admin/instructors/AdminInstructors";
 import { AdminChamps, ChampsList } from "@/components/admin/champs";
+import { AdminUsers } from "@/components/admin/users";
 
 
 export default async function Page() {
@@ -31,6 +32,7 @@ export default async function Page() {
         <CourseList tokens={tokens}/>
         <AdminInstructors tokens={tokens}/>
         <AdminChamps tokens={tokens}/>
+        <AdminUsers/>
       <Footer />
     </main>
   )
