@@ -129,7 +129,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
     return (
       <>
         <div className="relative course-card p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-          <button onClick={handleOpen} className="absolute bg-black h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
+          <button onClick={handleOpen} className="absolute bg-red-900 h-full w-full top-0 left-0 opacity-70 hover:opacity-90 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
             <Edit />
           </button>
         </div>
@@ -219,7 +219,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
   return (
     <>
       <div className="relative course-card p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-        <button onClick={handleOpen} className="absolute bg-black h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
+        <button onClick={handleOpen} className="absolute bg-red-900 h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
           <PlusCircle />
         </button>
       </div>

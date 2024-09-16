@@ -52,9 +52,9 @@ export function AdminInstructors() {
 
   return (
     <>
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 flex items-center justify-center bg-white">
+      <section className="w-full py-12 md:py-24 lg:py-32flex items-center justify-center bg-black">
         <div className="container px-4 md:px-6 text white">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl  mb-12 text-black">Instructores</h2>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl  mb-12 text-white">Instructores</h2>
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-6">
             {instructorsData?.map((instructor, index) => (
               <div key={index} className="relative flex flex-col items-start justify-end space-y-2 border-gray-800 p-4 bg-gray-400 h-[600px] rounded-lg hover:bg-gray-200 transition duration-300 cursor-pointer">
