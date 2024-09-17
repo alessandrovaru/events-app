@@ -2,10 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { getAuth, signOut } from "firebase/auth";
-import { app } from "../firebase";
 
 import { useAuth } from "./auth/AuthContext.jsx";
 import Link from "next/link";
+import { getFirebaseApp } from "./auth/firebase";
 
 
 
@@ -15,7 +15,7 @@ export default function Logout({ email, noProfile }) {
   const {user} = useAuth();
 
   async function handleLogout() {
-    await signOut(getAuth(app));
+    await signOut(getAuth(getFirebaseApp()));
 
     await fetch("/api/logout");
 
@@ -34,9 +34,9 @@ export default function Logout({ email, noProfile }) {
       )}
       <button
         onClick={handleLogout}
-        className="text-white bg-red-900 bg-red-950 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-900 dark:hover:bg-red-950 dark:focus:ring-primary-800 mr-4"
+        className={`text-white bg-red-900 bg-red-950 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-900 dark:hover:bg-red-950 dark:focus:ring-primary-800 ${!noProfile ? 'mr-4' : ''}`}
       >
-        Logout
+        Cerrar sesión
       </button>
     </>
   );
