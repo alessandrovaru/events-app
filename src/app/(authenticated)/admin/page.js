@@ -23,8 +23,28 @@ export default async function Page() {
     return notFound();
   }
 
-  
+  const checkAdmin = async () => {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const response = await fetch(`${baseUrl}/api/user`, {
+      headers: {
+        'Authorization': `Bearer ${tokens.token}`
+      }
+    });
 
+    if (response.ok) {
+      const data = await response.json();
+      setIsAdmin(data.user.role === 'admin');
+    } else {
+      console.error('Error al obtener los datos del usuario:', response.statusText);
+    }
+  }
+
+  const role = await checkAdmin();
+
+  
+  if(role !== 'admin') {
+    return notFound();
+  }
 
   return (
     <main className="flex-1">
