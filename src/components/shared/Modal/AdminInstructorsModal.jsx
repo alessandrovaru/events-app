@@ -138,9 +138,9 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
         </div>
         {isOpen ? (
           <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-20 !mt-0">
-          <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+          <div className="relative mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div className="mt-3">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">Edit Course</h3>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">Editar instructor</h3>
               <button
                 className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-gray-700"
                 onClick={handleClose}
@@ -151,7 +151,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
               <form className="space-y-6" onSubmit={handleEdit}>
               <div>
                         <label htmlFor="first_name" className="block text-gray-700 text-sm font-bold mb-2">
-                          First Name
+                          Nombre
                         </label>
                         <div className="mt-1">
                           <input
@@ -167,7 +167,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
                       </div>
                       <div>
                         <label htmlFor="last_name" className="block text-gray-700 text-sm font-bold mb-2">
-                          Last Name
+                          Apellido
                         </label>
                         <div className="mt-1">
                           <input
@@ -183,7 +183,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
                       </div>
                       <div>
                         <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">
-                          Description
+                          Descripción
                         </label>
                         <div className="mt-1">
                           <textarea
@@ -198,7 +198,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
                       </div>
                       <div>
                         <label htmlFor="image_url" className="block text-gray-700 text-sm font-bold mb-2">
-                          Image URL
+                          URL de la imagen
                         </label>
                         <span className="text-xs text-gray-500">* You can upload the image to <a className="text-blue-500" href={process.env.NEXT_PUBLIC_FIREBASE_INSTRUCTORS_IMAGES_BUCKET} target="_blank" rel="noreferrer">firebase</a> and copy the direct link.</span>
                         <div className="mt-1">
@@ -244,7 +244,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
       </div>
       {isOpen ? (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-10">
-        <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div className="relative mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
           <button
             className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-gray-700"
             onClick={handleClose}

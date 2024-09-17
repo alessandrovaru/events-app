@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
-    const { first_name, last_name, description, token } = await request.json();
+    const { first_name, last_name, description, image_url, token } = await request.json();
 
     // Verificar la autenticación del usuario
     if (!token) {
@@ -15,7 +15,7 @@ export async function POST(request) {
     const uid = decodedToken.uid;
 
     // Validar los datos recibidos
-    if (!first_name || !last_name || !description) {
+    if (!first_name || !last_name || !description || !image_url) {
       return NextResponse.json({ error: 'Todos los campos son requeridos.' }, { status: 400 });
     }
 
@@ -24,6 +24,7 @@ export async function POST(request) {
       first_name,
       last_name,
       description,
+      image_url,
       createdAt: new Date(Date.now()).toISOString(),
       createdBy: uid,
     };

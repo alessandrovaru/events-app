@@ -53,6 +53,7 @@ export const Modal = ({ isEditForm, course }) => {
 
       alert('Curso creado exitosamente.');
       handleClose();
+      window.location.reload();
     } catch (error) {
       console.error('Error al agregar el curso:', error);
       alert(error.message);
