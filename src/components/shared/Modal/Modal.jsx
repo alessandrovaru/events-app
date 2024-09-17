@@ -29,6 +29,8 @@ export const Modal = ({ isEditForm, course }) => {
       location: formData.get('location'),
       days, // Ahora es un array de números
       time: formData.get('time'),
+      color: formData.get('color'),
+      image_url: formData.get('image_url'),
     };
 
     // Obtener el token de autenticación del usuario si lo estás usando
@@ -71,6 +73,8 @@ export const Modal = ({ isEditForm, course }) => {
       location: formData.get('location'),
       days, // Ahora es un array de números
       time: formData.get('time'),
+      color: formData.get('color'),
+      image_url: formData.get('image_url'),
     };
 
     // Obtener el token de autenticación del usuario si lo estás usando
@@ -131,88 +135,115 @@ export const Modal = ({ isEditForm, course }) => {
   }
   
     
-
   if(isEditForm) {
     return (
       <>
-        <div className="relative course-card p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+        <div className="relative course-card p-6 bg-gray-500 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 w-10">
           <button onClick={handleOpen} className="absolute bg-black h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
             <Edit />
           </button>
         </div>
-        {isOpen ? (
-          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-10">
-            <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-              <div className="mt-3 ">
-                <h3 className="text-lg leading-6 font-medium text-gray-900">Edit Course</h3>
-                <div className="mt-2">
-                  <form className="space-y-6" onSubmit={handleEdit}>
-                    <div>
+        {isOpen && (
+          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-20">
+            <div className="relative mx-auto p-5 border w-full max-w-4xl shadow-lg rounded-md bg-white sm:p-6 lg:p-8">
+              <div className="mt-3">
+                <h3 className="text-lg leading-6 font-medium text-gray-900">Editar curso</h3>
+                <button
+                  className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-gray-700"
+                  onClick={handleClose}
+                >
+                  &times;
+                </button>
+                <div className="mt-4">
+                  <form className="grid grid-cols-1 md:grid-cols-4 gap-6" onSubmit={handleEdit}>
+                    <div className="col-span-3 md:col-span-1 lg:col-span-1">
                       <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
-                        Name
+                        Nombre
                       </label>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="name"
-                          id="name"
-                          autoComplete="name"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                          defaultValue={course.name}
-                        />
-                      </div>
+                      <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        autoComplete="name"
+                        required
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        defaultValue={course.name}
+                      />
                     </div>
-                    <div>
-                      <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">
-                        Description
-                      </label>
-                      <div className="mt-1">
-                        <textarea
-                          name="description"
-                          id="description"
-                          autoComplete="description"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                          defaultValue={course.description}
-                        />
-                      </div>
-                    </div>
-                    <div>
+                    <div className="col-span-3 md:col-span-1 lg:col-span-1">
                       <label htmlFor="discipline" className="block text-gray-700 text-sm font-bold mb-2">
-                        Discipline
+                        Disciplina
                       </label>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="discipline"
-                          id="discipline"
-                          autoComplete="discipline"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                          defaultValue={course.discipline}
-                        />
-                      </div>
+                      <input
+                        type="text"
+                        name="discipline"
+                        id="discipline"
+                        autoComplete="discipline"
+                        required
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        defaultValue={course.discipline}
+                      />
                     </div>
-                    <div>
+                    <div className="col-span-3 md:col-span-1 lg:col-span-1">
                       <label htmlFor="location" className="block text-gray-700 text-sm font-bold mb-2">
-                        Location
+                        Locación
                       </label>  
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="location"
-                          id="location"
-                          autoComplete="location"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                          defaultValue={course.location}
-                        />
-                      </div>
+                      <input
+                        type="text"
+                        name="location"
+                        id="location"
+                        autoComplete="location"
+                        required
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        defaultValue={course.location}
+                      />
                     </div>
-                    <div>
+                    <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                      <label htmlFor="time" className="block text-gray-700 text-sm font-bold mb-2">
+                        Horario
+                      </label>
+                      <input
+                        type="text"
+                        name="time"
+                        id="time"
+                        autoComplete="time"
+                        required
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        defaultValue={course.time}
+                      />
+                      <span className="text-xs text-gray-500">*Ejemplo: 08:00 - 10:00 PM</span>
+                    </div>
+                    <div className="col-span-4">
+                      <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">
+                        Descripción
+                      </label>
+                      <textarea
+                        name="description"
+                        id="description"
+                        autoComplete="description"
+                        required
+                        className="shadow appearance-none border rounded w-full h-24 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        defaultValue={course.description}
+                      />
+                    </div>
+                    <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                      <label htmlFor="image_url" className="block text-gray-700 text-sm font-bold mb-2 mt-4">
+                        URL de la imagen
+                      </label>
+                      <span className="text-xs text-gray-500">* La imagen la puedes subir a <a className="text-blue-500" href={process.env.NEXT_PUBLIC_FIREBASE_INSTRUCTORS_IMAGES_BUCKET} target="_blank" rel="noreferrer">firebase</a> y copiar el enlace directo.</span>
+                      <input
+                        type="text"
+                        name="image_url"
+                        id="image_url"
+                        autoComplete="image_url"
+                        required
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        defaultValue={course.image_url}
+                      />
+                    </div>
+                    <div className="col-span-3 md:col-span-1 lg:col-span-1">
                       <label className="block text-gray-700 text-sm font-bold mb-2">
-                        Days
+                        Días
                       </label>
                       <div className="flex flex-wrap">
                         {[
@@ -232,184 +263,227 @@ export const Modal = ({ isEditForm, course }) => {
                               defaultChecked={isEditForm && course.days.includes(day.value)}
                               className="mr-2"
                             />
-                            {day.label}cxc
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="time" className="block text-gray-700 text-sm font-bold mb-2">
-                        Time
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="time"
-                          id="time"
-                          autoComplete="time"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                          defaultValue={course.time}
-                        />
-                      </div>
-                    </div>
-                    <button type="submit" className="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                      Save
-                    </button>
-                  </form>
-                </div>
-                <div className="items-center">
-                  <button
-                    className="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                    onClick={handleClose}
-                  >
-                    Close
-                  </button>
-                  <button onClick={handleDelete} className="px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 mt-2">
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : null}
-      </>
-    );
-  }
-  
-  return (
-    <>
-      <div className="relative course-card p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-        <button onClick={handleOpen} className="absolute bg-black h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
-          <PlusCircle />
-        </button>
-      </div>
-      {isOpen ? (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-10">
-        <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-          <div className="mt-3">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">Add New Course</h3>
-            <div className="mt-2">
-            <form className="space-y-6" onSubmit={handleSubmit}>
-                    <div>
-                      <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
-                        Name
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="name"
-                          id="name"
-                          autoComplete="name"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">
-                        Description
-                      </label>
-                      <div className="mt-1">
-                        <textarea
-                          name="description"
-                          id="description"
-                          autoComplete="description"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="discipline" className="block text-gray-700 text-sm font-bold mb-2">
-                        Discipline
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="discipline"
-                          id="discipline"
-                          autoComplete="discipline"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="location" className="block text-gray-700 text-sm font-bold mb-2">
-                        Location
-                      </label>  
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="location"
-                          id="location"
-                          autoComplete="location"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
-                        Days
-                      </label>
-                      <div className="flex flex-wrap">
-                        {[
-                          { label: 'Lunes', value: 1 },
-                          { label: 'Martes', value: 2 },
-                          { label: 'Miércoles', value: 3 },
-                          { label: 'Jueves', value: 4 },
-                          { label: 'Viernes', value: 5 },
-                          { label: 'Sábado', value: 6 },
-                          { label: 'Domingo', value: 7 },
-                        ].map(day => (
-                          <label key={day.value} className="mr-4 mb-2 flex items-center text-black">
-                            <input
-                              type="checkbox"
-                              name="days"
-                              value={day.value}
-                              defaultChecked={isEditForm && course.days.includes(day.value)}
-                              className="mr-2 "
-                            />
                             {day.label}
                           </label>
                         ))}
                       </div>
                     </div>
-                    <div>
-                      <label htmlFor="time" className="block text-gray-700 text-sm font-bold mb-2">
-                        Time
+                    <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        Color
                       </label>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="time"
-                          id="time"
-                          autoComplete="time"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
+                      <div className="flex flex-wrap">
+                        {[
+                          { label: 'Rojo', value: 'red' },
+                          { label: 'Azul', value: 'blue' },
+                          { label: 'Verde', value: 'green' },
+                          { label: 'Amarillo', value: 'yellow' },
+                          { label: 'Morado', value: 'purple' },
+                          { label: 'Rosa', value: 'pink' },
+                          { label: 'Naranja', value: 'orange' },
+                        ].map(color => (
+                          <label key={color.value} className="mr-4 mb-2 flex items-center text-black">
+                            <input
+                              type="radio"
+                              name="color"
+                              value={color.value}
+                              defaultChecked={isEditForm && course.color === color.value}
+                              className="mr-2"
+                            />
+                            {color.label}
+                          </label>
+                        ))}
                       </div>
                     </div>
-                    <button type="submit" className="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                      Save
-                    </button>
+                    <div className="col-span-4">
+                      <button type="submit" className="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                        Guardar
+                      </button>
+                    </div>
                   </form>
+                </div>
+                <div className="mt-4">
+                  <button onClick={handleDelete} className="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                    Borrar
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="items-center px-4 py-3">
+          </div>
+        )}
+      </>
+    );
+  }
+  
+
+  return (
+    <>
+      <div className="relative course-card p-6 bg-gray-400 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+        <button onClick={handleOpen} className="absolute bg-black h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
+          <PlusCircle />
+        </button>
+      </div>
+      {isOpen && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-10">
+          <div className="relative mx-auto p-5 border w-full max-w-4xl shadow-lg rounded-md bg-white sm:p-6 lg:p-8">
+            <div className="mt-3">
+              <h3 className="text-lg leading-6 font-medium text-gray-900">Add New Course</h3>
               <button
-                className="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-gray-700"
                 onClick={handleClose}
               >
-                Close
+                &times;
               </button>
+              <div className="mt-4">
+                <form className="grid grid-cols-1 md:grid-cols-4 gap-6" onSubmit={handleSubmit}>
+                  <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                    <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      autoComplete="name"
+                      required
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+                  <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                    <label htmlFor="discipline" className="block text-gray-700 text-sm font-bold mb-2">
+                      Discipline
+                    </label>
+                    <input
+                      type="text"
+                      name="discipline"
+                      id="discipline"
+                      autoComplete="discipline"
+                      required
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+                  <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                    <label htmlFor="location" className="block text-gray-700 text-sm font-bold mb-2">
+                      Location
+                    </label>  
+                    <input
+                      type="text"
+                      name="location"
+                      id="location"
+                      autoComplete="location"
+                      required
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+                  <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                    <label htmlFor="time" className="block text-gray-700 text-sm font-bold mb-2">
+                      Time
+                    </label>
+                    <input
+                      type="text"
+                      name="time"
+                      id="time"
+                      autoComplete="time"
+                      required
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+                  <div className="col-span-4">
+                    <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">
+                      Description
+                    </label>
+                    <textarea
+                      name="description"
+                      id="description"
+                      autoComplete="description"
+                      required
+                      className="shadow appearance-none border rounded w-full h-24 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+                  <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                    <label htmlFor="image_url" className="block text-gray-700 text-sm font-bold mb-2">
+                      Image URL
+                    </label>
+                    <input
+                      type="text"
+                      name="image_url"
+                      id="image_url"
+                      autoComplete="image_url"
+                      required
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+                  <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                      Days
+                    </label>
+                    <div className="flex flex-wrap">
+                      {[
+                        { label: 'Lunes', value: 1 },
+                        { label: 'Martes', value: 2 },
+                        { label: 'Miércoles', value: 3 },
+                        { label: 'Jueves', value: 4 },
+                        { label: 'Viernes', value: 5 },
+                        { label: 'Sábado', value: 6 },
+                        { label: 'Domingo', value: 7 },
+                      ].map(day => (
+                        <label key={day.value} className="mr-4 mb-2 flex items-center text-black">
+                          <input
+                            type="checkbox"
+                            name="days"
+                            value={day.value}
+                            className="mr-2"
+                          />
+                          {day.label}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                      Color
+                    </label>
+                    <div className="flex flex-wrap">
+                      {[
+                        { label: 'Rojo', value: 'red' },
+                        { label: 'Azul', value: 'blue' },
+                        { label: 'Verde', value: 'green' },
+                        { label: 'Amarillo', value: 'yellow' },
+                        { label: 'Morado', value: 'purple' },
+                        { label: 'Rosa', value: 'pink' },
+                        { label: 'Naranja', value: 'orange' },
+                      ].map(color => (
+                        <label key={color.value} className="mr-4 mb-2 flex items-center text-black">
+                          <input
+                            type="radio"
+                            name="color"
+                            value={color.value}
+                            className="mr-2"
+                          />
+                          {color.label}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="col-span-4">
+                    <button type="submit" className="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                      Save
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div className="mt-4">
+                <button
+                  className="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                  onClick={handleClose}
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      ) : null}
+      )}
     </>
   );
-};
-
+}

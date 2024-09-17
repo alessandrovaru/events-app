@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
-    const { name, description, discipline, location, days, time, token } = await request.json();
+    const { name, description, discipline, location, days, time, color, image_url, token } = await request.json();
 
     // Verificar la autenticación del usuario
     if (!token) {
@@ -16,7 +16,7 @@ export async function POST(request) {
     const uid = decodedToken.uid;
 
     // Validar los datos recibidos
-    if (!name || !description || !discipline || !location || !days || !time) {
+    if (!name || !description || !discipline || !location || !days || !time || !color || !image_url) {
       return NextResponse.json({ error: 'Todos los campos son requeridos.' }, { status: 400 });
     }
 
@@ -28,6 +28,8 @@ export async function POST(request) {
       location,
       days: Array.isArray(days) ? days.map(Number) : [Number(days)], // Asegurar que 'days' es un array de números
       time,
+      color,
+      image_url,
       createdAt: new Date(Date.now()).toISOString(),
       createdBy: uid,
     };

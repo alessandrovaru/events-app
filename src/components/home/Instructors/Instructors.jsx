@@ -2,40 +2,6 @@ import Image from "next/image";
 import { Champs } from "../Champs";
 import listStorageData from "@/firebase/firestore/listData";
 
-// const instructorsData = [
-//   {
-//     name: "Genier Penagos",
-//     image: "/images/genier.jpg",
-//     description: "Entrenador de MMA"
-//   },
-//   {
-//     name: "Frank Manzano",
-//     image: "/images/main.jpg",
-//     description: "Profesor de educación fisica Defensa personal 6to DAN en sistema libre de artes marciales"
-//   },
-//   {
-//     name: "Sergio López",
-//     image: "/images/artesuave.jpg",
-//     description: "Entrenador de Jiu-Jitsu y Campeón Nacional de Jiu-Jitsu"
-//   },
-//   {
-//     name: "Dino Gallina",
-//     image: "/images/dino.jpg",
-//     description: "Entrenador de Muay Thai y Boxeo"
-//   },
-//   {
-//     name: "Daniel Gallina",
-//     image: "/images/daniel.jpg",
-//     description: "Entrenador de Muay Thai y Boxeo"
-//   },
-//   {
-//     name: "Francesco De Angelis",
-//     image: "/images/frace.jpg",
-//     description: "Entrenador de Jiu-Jitsu"
-//   }
-// ];
-
-
 export async function Instructors() {
 
   const instructorsData = await listStorageData("instructors");

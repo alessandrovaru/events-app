@@ -79,7 +79,7 @@ export function AdminUsers(){
   }, []);
   
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 flex items-center justify-center bg-black">
+    <section className="w-full py-12 md:py-24 lg:py-32 flex items-center justify-center bg-black overflow-x-scroll">
       <div className="container px-4 md:px-6 text white">
         <h1 className="text-2xl font-bold mb-4 text-white">Admin Users</h1>
         <table className="min-w-full bg-white text-black rounded-lg shadow-lg overflow-hidden">

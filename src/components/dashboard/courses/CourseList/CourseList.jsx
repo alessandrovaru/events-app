@@ -2,6 +2,7 @@ import { getFirestore } from "firebase-admin/firestore";
 import { getFirebaseAdminApp } from '@/app/firebase';
 import { LockKeyhole, PlusCircle } from "lucide-react";
 import { AddNewModal, Modal } from "@/components/shared/Modal";
+import Image from "next/image";
 
 const db = getFirestore(getFirebaseAdminApp());
 
@@ -40,20 +41,28 @@ export const CourseList = async ({ tokens }) => {
       <h2 className="text-3xl font-bold text-white mb-6 ps-6 pt-6">Cursos</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 p-6">
         {sortedCourses.map(course => (
-          <div key={course.id} className="relative course-card p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-            <h2 className="text-2xl font-bold mb-2 text-gray-700">{course.name}</h2>
-            <span className="text-gray-500 mb-4 text-sm">{course.discipline}</span>
-            <p className="text-gray-700 mb-4">{course.description?.slice(0, 46)}{course.description?.length > 30 ? '...' : ''}</p>
-            
-            {!isAdmin && !userCourseIds?.includes(course.id) ? (
-              <div className="absolute bg-black h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
-                <LockKeyhole />
+          <>
+            <div key={course.id} className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300`}>
+              <div className="relative z-10">
+                <h2 className="text-2xl font-bold mb-2 text-white">{course.name}</h2>
+                <span className="text-white mb-4 text-xs">{course.time}</span>
+                <p className="text-white text-sm"><strong></strong> {course.location}</p>
+                <p>{course.discipline}</p>
+                <p className="text-white text-sm">{course.description.slice(0, 62)}...</p>
               </div>
-            ) : null}
-            {isAdmin ? (
-              <Modal isEditForm={true} course={course} />
-            ) : null}
-          </div>
+              <div className={`absolute h-full w-full top-0 left-0 bg-${course.color}-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300`}>
+                <Image src={course.image_url} className="object-cover mix-blend-darken rounded-lg" alt={course.name} fill={true} />
+              </div>
+              {!isAdmin && !userCourseIds?.includes(course.id) ? (
+                <div className="absolute bg-black h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
+                  <LockKeyhole />
+                </div>
+              ) : null}
+              {isAdmin ? (
+                <Modal isEditForm={true} course={course} />
+              ) : null}
+            </div>
+          </>
         ))}
         {isAdmin ? (
           <Modal />
