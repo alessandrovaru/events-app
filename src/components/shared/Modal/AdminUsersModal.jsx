@@ -61,21 +61,27 @@ export const AdminUsersModal = ({ isEditForm, userData, courses }) => {
   if(isEditForm) {
     return (
       <>
-        <div className="relative course-card p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-          <button onClick={handleOpen} className="absolute bg-black h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
-            <Edit />
+        <div className="relative bg-red-200 text-red-800 px-2 py-1 rounded-full mr-2 w-auto inline-block mt-2 mb-2">
+          <button onClick={handleOpen} className="h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
+            +
           </button>
         </div>
         {isOpen ? (
           <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-10">
           <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <button
+              className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-gray-700"
+              onClick={handleClose}
+            >
+              &times;
+            </button>
             <div className="mt-3">
               <h3 className="text-lg leading-6 font-medium text-gray-900">Edit Champ</h3>
               <div className="mt-2">
               <form className="space-y-6" onSubmit={handleEdit}>
                 <div>
                   <label htmlFor="enrolledCourses" className="block text-gray-700 text-sm font-bold mb-2">
-                    Enrolled Courses
+                    Cursos inscritos
                   </label>
                   <div className="mt-1 text-black">
                     
@@ -86,8 +92,8 @@ export const AdminUsersModal = ({ isEditForm, userData, courses }) => {
                         id={`course-${course.id}`}
                         name="enrolledCourses"
                         value={course.id}
-                        defaultChecked={userData.enrolledCourses.includes(course.id)}
-                        className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        defaultChecked={userData.enrolledCourses?.includes(course.id)}
+                        className="h-4 w-4 text-gray-600 border-gray-300 rounded focus:ring-gray-500"
                       />
                       <label htmlFor={`course-${course.id}`} className="ml-2 block text-sm text-gray-900">
                         {course.name}
@@ -96,18 +102,10 @@ export const AdminUsersModal = ({ isEditForm, userData, courses }) => {
                   ))}
                   </div>
                 </div>
-                      <button type="submit" className="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                        Save
+                      <button type="submit" className="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                        Guardar
                       </button>
                     </form>
-              </div>
-              <div className="items-center px-4 py-3">
-                <button
-                  className="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                  onClick={handleClose}
-                >
-                  Close
-                </button>
               </div>
             </div>
           </div>
@@ -117,83 +115,5 @@ export const AdminUsersModal = ({ isEditForm, userData, courses }) => {
     );
   }
 
-  
-  return (
-    <>
-      <div className="relative course-card p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-        <button onClick={handleOpen} className="absolute bg-black h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
-          <PlusCircle />
-        </button>
-      </div>
-      {isOpen ? (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-10">
-        <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-          <div className="mt-3">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">Add New Champ</h3>
-            <div className="mt-2">
-            <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-                      <label htmlFor="first_name" className="block text-gray-700 text-sm font-bold mb-2">
-                        First Name
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="first_name"
-                          id="first_name"
-                          autoComplete="first_name"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="last_name" className="block text-gray-700 text-sm font-bold mb-2">
-                        Last Name
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="last_name"
-                          id="last_name"
-                          autoComplete="last_name"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">
-                        Description
-                      </label>
-                      <div className="mt-1">
-                        <textarea
-                          name="description"
-                          id="description"
-                          autoComplete="description"
-                          required
-                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
-                      </div>
-                    </div>
-                    <button type="submit" className="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                      Save
-                    </button>
-                  </form>
-            </div>
-            <div className="items-center px-4 py-3">
-              <button
-                className="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                onClick={handleClose}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      ) : null}
-    </>
-  );
 };
 

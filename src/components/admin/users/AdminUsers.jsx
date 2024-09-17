@@ -79,19 +79,15 @@ export function AdminUsers(){
   }, []);
   
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 flex items-center justify-center bg-black overflow-x-scroll">
+    <section className="w-full py-12 md:py-24 lg:py-32 flex items-center justify-center bg-black overflow-x-scroll md:overflow-x-hidden lg:overflow-x-hidden">
       <div className="container px-4 md:px-6 text white">
         <h1 className="text-2xl font-bold mb-4 text-white">Admin Users</h1>
-        <table className="min-w-full bg-white text-black rounded-lg shadow-lg overflow-hidden">
+        <table className="min-w-full bg-white text-black rounded-lg shadow-lg ">
           <thead className="text-black">
             <tr>
               <th className="py-2 px-4 border text-left">Photo</th>
               <th className="py-2 px-4 border text-left">Name</th>
-              <th className="py-2 px-4 border text-left">Email</th>
-              <th className="py-2 px-4 border text-left">Email Verified</th>
-              <th className="py-2 px-4 border text-left">Created At</th>
-              <th className="py-2 px-4 border text-left">Last Login At</th>
-              <th className="py-2 px-4 border text-left">Enrolled Courses</th>
+              <th className="py-2 px-4 border text-left">Cursos</th>
             </tr>
           </thead>
           <tbody>
@@ -107,10 +103,6 @@ export function AdminUsers(){
                     />
                 </td>
                 <td className="py-2 px-4 border">{user.name}</td>
-                <td className="py-2 px-4 border">{user.email}</td>
-                <td className="py-2 px-4 border">{user.emailVerified ? 'Yes' : 'No'}</td>
-                <td className="py-2 px-4 border">{new Date(user.createdAt).toLocaleString()}</td>
-                <td className="py-2 px-4 border">{new Date(user.lastLoginAt).toLocaleString()}</td>
                 <td className="px-4 border">
                   {courses
                     .filter(course => user.enrolledCourses
@@ -118,7 +110,7 @@ export function AdminUsers(){
                     .includes(course.id))
                     .map(course => (
                       <div key={course.id} className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full mr-2 w-auto inline-block mt-2 mb-2">
-                        {course.name}
+                        {course.name.length > 8 ? `${course.name.slice(0, 8)}...` : course.name}
                       </div>
                     ))
                   }
