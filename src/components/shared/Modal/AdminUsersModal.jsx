@@ -27,7 +27,6 @@ export const AdminUsersModal = ({ isEditForm, userData, courses }) => {
       enrolledCourses: [ ...formData.getAll('enrolledCourses') ],
     };
 
-    console.log('Data:', data);
 
     // Obtener el token de autenticación del usuario si lo estás usando
     const token = user.idToken

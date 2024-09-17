@@ -5,7 +5,6 @@ import listStorageData from "@/firebase/firestore/listData";
 export async function Instructors() {
 
   const instructorsData = await listStorageData("instructors");
-  console.log(instructorsData);
   return (
     <>
     <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 flex items-center justify-center bg-white">

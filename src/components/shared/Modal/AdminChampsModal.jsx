@@ -43,7 +43,6 @@ export const AdminChampsModal = ({ isEditForm, champ }) => {
 
       if (response.ok) {
         const result = await response.json();
-        console.log('Champ creado:', result);
         handleClose();
         window.location.reload();
       } else {

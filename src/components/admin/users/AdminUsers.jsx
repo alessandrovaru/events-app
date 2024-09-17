@@ -31,7 +31,6 @@ export function AdminUsers(){
     
     if (response.ok) {
       const data = await response.json();
-      console.log('Cursos:', data.courses);
       setCourses(data.courses);
     } else {
       console.error('Error al obtener los cursos:', response.statusText);
@@ -63,7 +62,6 @@ export function AdminUsers(){
     
     if (response.ok) {
       const data = await response.json();
-      console.log('Usuarios:', data.users);
       setUsersData(data.users);
     } else {
       console.error('Error al obtener los usuarios:', response.statusText);

@@ -37,7 +37,6 @@ export function AdminInstructors() {
     
     if (response.ok) {
       const data = await response.json();
-      console.log('Instructores:', data.instructors);
       setInstructorsData(data.instructors);
     } else {
       console.error('Error al obtener los instructores:', response.statusText);

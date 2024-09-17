@@ -40,7 +40,6 @@ export const ProfileCard = () => {
         }
       });
       const data = await response.json();
-      console.log(data.courses);
       setUserCourse(data.courses);
     } catch (error) {
       console.error(error);

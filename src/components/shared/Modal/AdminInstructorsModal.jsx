@@ -44,7 +44,6 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
 
       if (response.ok) {
         const result = await response.json();
-        console.log('Instructor creado:', result);
         handleClose();
         window.location.reload();
       } else {
