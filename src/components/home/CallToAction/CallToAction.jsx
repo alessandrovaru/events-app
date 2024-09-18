@@ -27,9 +27,9 @@ export const CallToAction = async () => {
             </p>
           </div>
           <div className="w-full max-w-sm space-y-2">
-              <button className="bg-red-600 text-white hover:bg-red-700 py-2 px-4 rounded-lg" type="submit">
+              <Link href='/login' className="bg-red-600 text-white hover:bg-red-700 py-2 px-4 rounded-lg" type="submit">
                 {buttonText}
-              </button>
+              </Link>
           </div>
         </div>
       </div>
