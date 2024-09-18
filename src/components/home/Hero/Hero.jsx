@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link";
 
 // const data = {
 //   title: "Unleash Your Inner Fighter",
@@ -44,12 +45,13 @@ export const Hero = async () => {
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               {buttons.map((button, index) => (
-                <button
+                <Link
+                  href={button.variant === "primary" ? "/login" : "/dashboard"}
                   key={index}
                   className={`py-2 px-4 rounded-lg ${button.variant === "primary" ? "bg-white text-black hover:bg-gray-200" : "text-white border-white hover:bg-white hover:text-black"}`}
                 >
                   {button.text}
-                </button>
+                </Link>
               ))}
             </div>
           </div>
