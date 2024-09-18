@@ -48,7 +48,7 @@ export const Hero = async () => {
                 <Link
                   href={button.variant === "primary" ? "/login" : "/dashboard"}
                   key={index}
-                  className={`py-2 px-4 rounded-lg ${button.variant === "primary" ? "bg-white text-black hover:bg-gray-200" : "text-white border-white hover:bg-white hover:text-black"}`}
+                  className={` text-center py-2 px-4 rounded-lg ${button.variant === "primary" ? "bg-white text-black hover:bg-gray-200" : "text-white border-white hover:bg-white hover:text-black"}`}
                 >
                   {button.text}
                 </Link>

@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function MobileDrawer({ isOpen, onClose, email }) {
   return (
     <div
-      className={`fixed flex flex-col justify-center items-center z-10 top-0 right-0 h-full w-full bg-white text-black transition-transform duration-300 transform ${
+      className={`z-20 fixed flex flex-col justify-center items-center z-10 top-0 right-0 h-full w-full bg-white text-black transition-transform duration-300 transform ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
@@ -15,6 +15,9 @@ export default function MobileDrawer({ isOpen, onClose, email }) {
       <ul className="flex flex-col justify-center items-center space-y-4">
         <li className="text-xl hover:text-blue-900 hover:font-semibold">
           <Link href="/dashboard">Dashboard</Link>
+        </li>
+        <li className="text-xl hover:text-blue-900 hover:font-semibold">
+          <Link href="/admin">Admin</Link>
         </li>
         <li className="text-xl hover:text-blue-900 hover:font-semibold">
           <Logout email={email} noProfile={true} />
