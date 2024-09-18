@@ -46,7 +46,7 @@ export async function middleware(request) {
 export const config = {
   matcher: [
     "/",
-    "/((?!_next|api|.*\\.).*)",
+    '/((?!_next|favicon.ico|__/auth|__/firebase|api|.*\\.).*)',
     "/api/login",
     "/api/logout",
   ],
