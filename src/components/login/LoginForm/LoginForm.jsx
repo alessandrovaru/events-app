@@ -82,7 +82,6 @@ export function LoginForm() {
       setHasLogged(false);
       const auth = getFirebaseAuth();
       await loginWithProviderUsingRedirect(auth, getGoogleProvider(auth));
-      console.log(auth);
       setHasLogged(true);
     });
 
