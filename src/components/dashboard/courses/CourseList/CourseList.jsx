@@ -38,7 +38,7 @@ export const CourseList = async ({ tokens }) => {
 
   return (
     <div className="container mx-auto">
-      <h2 className="text-3xl font-bold text-white mb-6 ps-6 pt-6">Cursos</h2>
+      <h2 className="text-xl font-bold text-white mb-6 ps-6 pt-6">Cursos</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 p-6">
         {sortedCourses.map(course => (
           <div key={course.id} className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300`}>

@@ -36,7 +36,7 @@ export const Hero = async () => {
         <div className="grid h-full grid-cols-1 md:grid-cols-2 gap-6 items-center py-6 md:py-12 lg:py-24">
           <div className="flex flex-col space-y-4">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+              <h1 className="text-xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
                 {title}
               </h1>
               <p className="max-w-[600px] text-gray-300 md:text-xl">

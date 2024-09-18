@@ -13,10 +13,10 @@ export default function MobileDrawer({ isOpen, onClose, email }) {
         <X className="text-5xl" />
       </button>
       <ul className="flex flex-col justify-center items-center space-y-4">
-        <li className="text-3xl hover:text-blue-900 hover:font-semibold">
+        <li className="text-xl hover:text-blue-900 hover:font-semibold">
           <Link href="/dashboard">Dashboard</Link>
         </li>
-        <li className="text-3xl hover:text-blue-900 hover:font-semibold">
+        <li className="text-xl hover:text-blue-900 hover:font-semibold">
           <Logout email={email} noProfile={true} />
         </li>
         {/* Add other navigation links */}
