@@ -49,7 +49,7 @@ export const WhyChooseUs = async () => {
           {features.map((feature, index) => (
             <div key={index} className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
               <feature.icon className="h-12 w-12 mb-2 text-red-600" />
-              <h3 className="text-xl font-bold">{feature.title}</h3>
+              <h3 className="text-xl font-bold text-center">{feature.title}</h3>
               <p className="text-sm text-gray-500 text-center">{feature.description}</p>
             </div>
           ))}
