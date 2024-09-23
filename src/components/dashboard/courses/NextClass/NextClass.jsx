@@ -2,6 +2,7 @@ import { getFirestore } from "firebase-admin/firestore";
 import { getFirebaseAdminApp } from '@/app/firebase';
 import Image from "next/image";
 import { LockKeyhole } from "lucide-react";
+import Link from "next/link";
 
 const db = getFirestore(getFirebaseAdminApp());
 
@@ -110,7 +111,7 @@ export const NextClass = async ({ tokens }) => {
         </>
       ) : (
         limitedClasses.map(classItem => (
-          <div key={`${classItem.id}-${classItem.day}`} className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300 ${days[classItem.today] === days[classItem.day] ? 'animate-pulse ' : ''}`}>
+          <Link href={`/courses/${classItem.id}`} key={`${classItem.id}-${classItem.day}`} className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300 ${days[classItem.today] === days[classItem.day] ? 'animate-pulse ' : ''}`}>
             <div className="relative z-10">
               <h2 className="text-2xl font-bold mb-2 text-white">{days[classItem.day]}</h2>
               <span className="text-white mb-4 text-xs">{classItem.time}</span>
@@ -123,7 +124,7 @@ export const NextClass = async ({ tokens }) => {
             <div className={`absolute h-full w-full top-0 left-0 ${colors[classItem.color]} bg-opacity-90 rounded-lg z-0 transition-opacity duration-300`}>
               <Image src={classItem.image_url} className="object-cover mix-blend-darken rounded-lg" alt={classItem.name} fill={true} />
             </div>
-          </div>
+          </Link>
         ))
       )}
       </div>
