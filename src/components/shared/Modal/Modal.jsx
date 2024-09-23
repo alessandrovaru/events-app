@@ -31,6 +31,7 @@ export const Modal = ({ isEditForm, course }) => {
       time: formData.get('time'),
       color: formData.get('color'),
       image_url: formData.get('image_url'),
+      isReservable: formData.get('isReservable'),
     };
 
     // Obtener el token de autenticación del usuario si lo estás usando
@@ -76,6 +77,7 @@ export const Modal = ({ isEditForm, course }) => {
       time: formData.get('time'),
       color: formData.get('color'),
       image_url: formData.get('image_url'),
+      isReservable: formData.get('isReservable') === 'false',
     };
 
     // Obtener el token de autenticación del usuario si lo estás usando
@@ -296,6 +298,23 @@ export const Modal = ({ isEditForm, course }) => {
                         ))}
                       </div>
                     </div>
+                    <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                        Reservable
+                      </label>
+                      <div className="flex flex-wrap">
+                        <label className="mr-4 mb-2 flex items-center text-black">
+                          <input
+                            type="radio"
+                            name="isReservable"
+                            value={true}
+                            defaultChecked={isEditForm && course.isReservable}
+                            className="mr-2"
+                          />
+                          Sí, es reservable
+                        </label>
+                      </div>
+                    </div>
                     <div className="col-span-4">
                       <button type="submit" className="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
                         Guardar
@@ -464,6 +483,22 @@ export const Modal = ({ isEditForm, course }) => {
                           {color.label}
                         </label>
                       ))}
+                    </div>
+                  </div>
+                  <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                    <label className="block text-gray-700 text-sm font-bold mb-2">
+                      Reservable
+                    </label>
+                    <div className="flex flex-wrap">
+                      <label className="mr-4 mb-2 flex items-center text-black">
+                        <input
+                          type="radio"
+                          name="isReservable"
+                          value={true}
+                          className="mr-2"
+                        />
+                        Sí, es reservable
+                      </label>
                     </div>
                   </div>
                   <div className="col-span-4">
