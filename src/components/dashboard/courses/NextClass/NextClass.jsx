@@ -123,6 +123,9 @@ export const NextClass = async ({ tokens }) => {
               {days[classItem.today] === days[classItem.day] && (
                 <p className="text-white font-bold">Hoy</p>
               )}
+              {classItem.isReservable && (
+                <button className="bg-white text-black text-xs px-3 py-1 rounded-lg hover:opacity-90">Reservar</button>
+              )}
             </div>
             <div className={`absolute h-full w-full top-0 left-0 ${colors[classItem.color]} bg-opacity-90 rounded-lg z-0 transition-opacity duration-300`}>
               <Image src={classItem.image_url} className="object-cover mix-blend-darken rounded-lg" alt={classItem.name} fill={true} />
