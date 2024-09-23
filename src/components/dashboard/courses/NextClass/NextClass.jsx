@@ -102,6 +102,9 @@ export const NextClass = async ({ tokens }) => {
                 <span className="text-white mb-4 text-xs">{course.time}</span>
                 <p className="text-white text-sm"><strong></strong> {course.location}</p>
                 <p>{course.discipline}</p>
+                {course.isReservable && (
+                  <button className="bg-white text-black px-6 py-2 rounded-lg hover:opacity-90">Inscribirse</button>
+                )}
               </div>
               <div className={`absolute h-full w-full top-0 left-0 bg-${course.color}-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300`}>
                 <Image src={course.image_url} className="object-cover mix-blend-darken rounded-lg" alt={course.name} fill={true} />

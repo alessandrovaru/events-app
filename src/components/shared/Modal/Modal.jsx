@@ -77,7 +77,7 @@ export const Modal = ({ isEditForm, course }) => {
       time: formData.get('time'),
       color: formData.get('color'),
       image_url: formData.get('image_url'),
-      isReservable: formData.get('isReservable') === 'false',
+      isReservable: formData.get('isReservable')
     };
 
     // Obtener el token de autenticación del usuario si lo estás usando
