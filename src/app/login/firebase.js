@@ -68,6 +68,9 @@ export const loginWithProvider = async (
       emailVerified: result.user.emailVerified,
       createdAt: result.user.metadata.creationTime,
       lastLoginAt: result.user.metadata.lastSignInTime,
+      enrolledCourses: ['undefined'],
+      updatedAt: 'undefined',
+      updatedBy: 'undefined'
     };
     await setDoc(docRef, data);
     return result;
@@ -107,6 +110,9 @@ export const loginWithProviderUsingRedirect = async (
       emailVerified: result.user.emailVerified,
       createdAt: result.user.metadata.creationTime,
       lastLoginAt: result.user.metadata.lastSignInTime,
+      enrolledCourses: ['undefined'],
+      updatedAt: 'undefined',
+      updatedBy: 'undefined'
     };
     await setDoc(docRef, data);
     return result;
