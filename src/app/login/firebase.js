@@ -68,7 +68,7 @@ export const loginWithProvider = async (
       emailVerified: result.user.emailVerified,
       createdAt: result.user.metadata.creationTime,
       lastLoginAt: result.user.metadata.lastSignInTime,
-      enrolledCourses: ['undefined'],
+      enrolledCourses: ['course'],
       updatedAt: 'undefined',
       updatedBy: 'undefined'
     };
