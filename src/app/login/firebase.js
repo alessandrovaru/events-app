@@ -82,11 +82,9 @@ export const loginWithProviderUsingRedirect = async (
   provider
 ) =>{
   const result = await signInWithRedirect(auth, provider);
-  return result;
-};
 
-export const handleUserDocument = async (result) => {
   
+
   const docRef = doc(db, 'users', result.user.uid);
   const docSnap = await getDoc(docRef);
 
@@ -119,4 +117,4 @@ export const handleUserDocument = async (result) => {
     await setDoc(docRef, data);
     return result;
   }
-}
+};
