@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import {useLoadingCallback} from 'react-loading-hook';
 import { getFirebaseAuth } from "@/app/auth/firebase";
-import { getGoogleProvider, loginWithProvider, loginWithProviderUsingRedirect } from "@/app/login/firebase";
+import { getGoogleProvider, handleUserDocument, loginWithProvider, loginWithProviderUsingRedirect } from "@/app/login/firebase";
 import { loginWithCredential } from "@/api";
 import { useRedirectParam } from "@/app/shared/useRedirectParam";
 import { useRedirectAfterLogin } from "@/app/shared/useRedirectAfterLogin";
@@ -61,7 +61,7 @@ export function LoginForm() {
     const credential = await getRedirectResult(auth);
 
     if (credential?.user) {
-      console.log(credential);
+      await handleUserDocument(credential);
       await handleLogin(credential);
 
       setHasLogged(true);
