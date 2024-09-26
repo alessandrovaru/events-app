@@ -61,6 +61,7 @@ export function LoginForm() {
     const credential = await getRedirectResult(auth);
 
     if (credential?.user) {
+      console.log(credential);
       await handleLogin(credential);
 
       setHasLogged(true);
