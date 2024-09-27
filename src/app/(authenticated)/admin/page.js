@@ -9,6 +9,7 @@ import { NextClass } from "@/components/dashboard/courses/NextClass";
 import { AdminInstructors } from "@/components/admin/instructors/AdminInstructors";
 import { AdminChamps, ChampsList } from "@/components/admin/champs";
 import { AdminUsers } from "@/components/admin/users";
+import { AdminLanding } from "@/components/admin/landing";
 
 
 export default async function Page() {
@@ -61,6 +62,7 @@ export default async function Page() {
         <AdminInstructors tokens={tokens}/>
         <AdminChamps tokens={tokens}/>
         <AdminUsers/>
+        <AdminLanding />
       <Footer />
     </main>
   )
