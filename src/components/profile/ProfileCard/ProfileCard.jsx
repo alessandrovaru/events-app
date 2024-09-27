@@ -54,7 +54,7 @@ export const ProfileCard = () => {
       <div className="flex flex-col bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
         <div className="flex items-center space-x-4">
           <div className="relative w-16 h-16">
-            <Image src={user.photoURL} alt={user.displayName} className="object-cover rounded-full" layout="fill" />
+            <Image src={user.photoURL} alt={user.displayName} className="object-cover rounded-full" fill />
           </div>
           <div>
             <h1 className="text-2xl font-semibold text-gray-900">{user.displayName}</h1>

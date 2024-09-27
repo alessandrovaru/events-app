@@ -149,7 +149,7 @@ function renderLandingData(landingData, handleEdit) {
                 <Image
                   src={landingData.heroImage}
                   alt="Hero Image"
-                  layout="fill"
+                  fill
                   objectFit="cover"
                 />
               </div>

@@ -59,7 +59,7 @@ export function CourseDetail({ course }) {
           <Image
             src={image_url}
             alt={name}
-            layout="fill"
+            fill
             objectFit="cover"
             className="object-center"
             priority
