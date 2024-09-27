@@ -51,9 +51,9 @@ export function AdminChamps() {
 
   return (
     <>
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 flex items-center justify-center bg-white">
+      <section className="w-full flex items-center justify-center bg-black">
         <div className="container px-4 md:px-6 text white">
-          <h2 className="text-xl font-bold sm:text-5xl  mb-12 text-black">Campeones</h2>
+          <h2 className="text-2xl font-bold mb-12 text-whitw">Campeones</h2>
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-6">
             {champsData?.map((champ, index) => (
               <div key={index} className="relative flex flex-col items-start justify-end space-y-2 border-gray-800 p-4 bg-gray-400 h-[600px] rounded-lg hover:bg-gray-200 transition duration-300 cursor-pointer">
