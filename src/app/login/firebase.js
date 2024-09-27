@@ -77,44 +77,6 @@ export const loginWithProvider = async (
   }
 };
 
-export const loginWithProviderUsingRedirect = async (
-  auth,
-  provider
-) =>{
-  const result = await signInWithRedirect(auth, provider);
-
-  
-
-  const docRef = doc(db, 'users', result.user.uid);
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    let data = {
-      id: result.user.uid,
-      email: result.user.email,
-      name: result.user.displayName,
-      photoURL: result.user.photoURL,
-      emailVerified: result.user.emailVerified,
-      createdAt: result.user.metadata.creationTime,
-      lastLoginAt: result.user.metadata.lastSignInTime,
-    };
-
-    await updateDoc(docRef, data);
-    return result;
-  } else {
-    let data = {
-      id: result.user.uid,
-      email: result.user.email,
-      name: result.user.displayName,
-      photoURL: result.user.photoURL,
-      emailVerified: result.user.emailVerified,
-      createdAt: result.user.metadata.creationTime,
-      lastLoginAt: result.user.metadata.lastSignInTime,
-      enrolledCourses: ['course'],
-      updatedAt: 'undefined',
-      updatedBy: 'undefined'
-    };
-    await setDoc(docRef, data);
-    return result;
-  }
+export const loginWithProviderUsingRedirect = async (auth,provider) =>{
+  await signInWithRedirect(auth, provider);
 };

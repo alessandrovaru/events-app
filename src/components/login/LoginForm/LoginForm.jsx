@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import {useLoadingCallback} from 'react-loading-hook';
-import { getFirebaseAuth } from "@/app/auth/firebase";
+import { getFirebaseApp, getFirebaseAuth } from "@/app/auth/firebase";
 import { getGoogleProvider, loginWithProvider, loginWithProviderUsingRedirect } from "@/app/login/firebase";
 import { loginWithCredential } from "@/api";
 import { useRedirectParam } from "@/app/shared/useRedirectParam";
@@ -14,6 +14,8 @@ import Image from "next/image";
 import logo from "/public/images/logo.jpg";
 import Link from "next/link";
 import { getRedirectResult } from "firebase/auth";
+import { getFirestore, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+
 
 export function LoginForm() {
   const [email, setEmail] = useState("");
@@ -56,17 +58,19 @@ export function LoginForm() {
   //   }
   // }
 
+  
   async function handleLoginWithRedirect() {
     setHasLogged(false);
     const auth = getFirebaseAuth();
     const credential = await getRedirectResult(auth);
 
     if (credential?.user) {
+      await processUser(credential.user);
       await handleLogin(credential);
-
       setHasLogged(true);
     }
   }
+
 
   const [handleLoginWithGoogle, isGoogleLoading, googleError] =
     useLoadingCallback(async () => {
@@ -84,12 +88,37 @@ export function LoginForm() {
       setHasLogged(false);
       const auth = getFirebaseAuth();
       await loginWithProviderUsingRedirect(auth, getGoogleProvider(auth));
-      setHasLogged(true);
+      // No necesitas establecer hasLogged aquí, ya que la página se recargará
     });
-
+  
     useEffect(() => {
       handleLoginWithRedirect();
     }, []);
+  
+    // Nueva función para manejar Firestore
+    const processUser = async (user) => {
+      const db = getFirestore(getFirebaseApp());
+      const docRef = doc(db, 'users', user.uid);
+      const docSnap = await getDoc(docRef);
+  
+      const data = {
+        id: user.uid,
+        email: user.email,
+        name: user.displayName,
+        photoURL: user.photoURL,
+        emailVerified: user.emailVerified,
+        createdAt: user.metadata.creationTime,
+        lastLoginAt: user.metadata.lastSignInTime,
+      };
+  
+      if (docSnap.exists()) {
+        await updateDoc(docRef, { ...data, lastLoginAt: new Date().toISOString() });
+      } else {
+        await setDoc(docRef, {
+          ...data
+        });
+      }
+    };
   
   return(
     <div className="w-full rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-800">
