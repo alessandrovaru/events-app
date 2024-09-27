@@ -9,6 +9,7 @@ import { NextClass } from "@/components/dashboard/courses/NextClass";
 import { AdminInstructors } from "@/components/admin/instructors/AdminInstructors";
 import { AdminChamps, ChampsList } from "@/components/admin/champs";
 import { AdminUsers } from "@/components/admin/users";
+import { AdminLanding } from "@/components/admin/landing";
 
 
 export default async function Page() {
@@ -53,10 +54,15 @@ export default async function Page() {
   return (
     <main className="flex-1">
       <HeaderLogged tokens={tokens} />
+        <div className="container mx-auto">
+          <h1 className="text-2xl font-bold text-white mb-6 ps-6 pt-6">Panel de administración</h1>
+          <p className="text-white ps-6">Bienvenido al panel de administración. Aquí podrás gestionar los cursos, instructores, campeonatos y usuarios de la plataforma.</p>
+        </div>
         <CourseList tokens={tokens}/>
         <AdminInstructors tokens={tokens}/>
         <AdminChamps tokens={tokens}/>
         <AdminUsers/>
+        <AdminLanding />
       <Footer />
     </main>
   )
