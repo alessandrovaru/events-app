@@ -16,7 +16,7 @@ export async function PUT(request) {
     const uid = decodedToken.uid;
 
     // Validar los datos recibidos
-    if (!docId || !name || !description || !discipline || !location || !days || !time || !color || !image_url || !isReservable) {
+    if (!docId || !name || !description || !discipline || !location || !days || !time || !color || !image_url ) {
       return NextResponse.json({ error: 'Todos los campos son requeridos.' }, { status: 400 });
     }
 

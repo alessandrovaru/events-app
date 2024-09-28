@@ -31,7 +31,7 @@ export const Modal = ({ isEditForm, course }) => {
       time: formData.get('time'),
       color: formData.get('color'),
       image_url: formData.get('image_url'),
-      isReservable: formData.get('isReservable'),
+      isReservable: formData.get('isReservable') 
     };
 
     // Obtener el token de autenticación del usuario si lo estás usando
@@ -77,7 +77,7 @@ export const Modal = ({ isEditForm, course }) => {
       time: formData.get('time'),
       color: formData.get('color'),
       image_url: formData.get('image_url'),
-      isReservable: formData.get('isReservable')
+      isReservable: formData.get('isReservable') 
     };
 
     // Obtener el token de autenticación del usuario si lo estás usando
@@ -305,7 +305,7 @@ export const Modal = ({ isEditForm, course }) => {
                       <div className="flex flex-wrap">
                         <label className="mr-4 mb-2 flex items-center text-black">
                           <input
-                            type="radio"
+                            type="checkbox"
                             name="isReservable"
                             value={true}
                             defaultChecked={isEditForm && course.isReservable}
@@ -492,7 +492,7 @@ export const Modal = ({ isEditForm, course }) => {
                     <div className="flex flex-wrap">
                       <label className="mr-4 mb-2 flex items-center text-black">
                         <input
-                          type="radio"
+                          type="checkbox"
                           name="isReservable"
                           value={true}
                           className="mr-2"
