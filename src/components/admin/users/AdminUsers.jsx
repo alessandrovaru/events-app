@@ -13,7 +13,7 @@ const users = [
   // Add more users as needed
 ];
 
-export function AdminUsers(){
+export function AdminUsers({analytics}) {
   const [usersData, setUsersData] = useState([]);
   const [courses, setCourses] = useState([]);
 
