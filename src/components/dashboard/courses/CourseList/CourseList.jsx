@@ -4,9 +4,19 @@ import { LockKeyhole, PlusCircle } from "lucide-react";
 import { AddNewModal, Modal } from "@/components/shared/Modal";
 import Image from "next/image";
 
+const numToDays = {
+  0: 'Domingo',
+  1: 'Lunes',
+  2: 'Martes',
+  3: 'Miércoles',
+  4: 'Jueves',
+  5: 'Viernes',
+  6: 'Sábado'
+};
+
 const db = getFirestore(getFirebaseAdminApp());
 
-export const CourseList = async ({ tokens }) => {
+export const CourseList = async ({ tokens, analytics }) => {
   const snapshotCourses = await db.collection('courses').get();
   const snapshotUsers = await db.collection('users').doc(tokens.decodedToken.uid).get();
   const courses = [];
@@ -32,8 +42,44 @@ export const CourseList = async ({ tokens }) => {
 
   const sortedCourses = [...enrolledCourses, ...otherCourses];
 
+  const getDayWithMostCourses = (courses) => {
+    // Initialize an array to count courses for each day of the week (0: Sunday, 1: Monday, ..., 6: Saturday)
+    const daysCount = Array(7).fill(0);
+  
+    // Iterate through each course
+    courses.forEach(course => {
+      // Iterate through each day the course is held
+      course.days.forEach(day => {
+        // Increment the count for the corresponding day
+        daysCount[day]++;
+      });
+    });
+  
+    // Find the index of the maximum value in daysCount
+    const dayWithMostCourses = daysCount.indexOf(Math.max(...daysCount));
+  
+    return dayWithMostCourses;
+  };
 
   
+  
+
+
+  if(analytics) {
+    const dayWithMostCourses = getDayWithMostCourses(courses);
+    return (
+      <div className="container mx-auto grid grid-cols-2">
+        <div>
+          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-white ps-6 pt-6">Cantidad de cursos</h2>
+          <p className="text-2xl font-bold text-white mb-6 ps-6 pt-6">{courses.length}</p>
+        </div>
+        <div>
+          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-white ps-6 pt-6">Día más concurrido</h2>
+          <p className="text-2xl font-bold text-white mb-6 ps-6 pt-6">{numToDays[dayWithMostCourses]}</p>
+        </div>
+      </div>
+    )
+  }
 
 
   return (

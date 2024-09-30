@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getTokens } from "next-firebase-auth-edge";
 import { cookies } from "next/headers";
-import { clientConfig, serverConfig } from "../../../config";
+import { clientConfig, serverConfig } from "@/config";
 import { HeaderLogged } from "@/components/shared/Header";
 import { Footer } from "@/components/shared/Footer";
 import { CourseList } from "@/components/dashboard/courses/CourseList";
@@ -10,7 +10,6 @@ import { AdminInstructors } from "@/components/admin/instructors/AdminInstructor
 import { AdminChamps, ChampsList } from "@/components/admin/champs";
 import { AdminUsers } from "@/components/admin/users";
 import { AdminLanding } from "@/components/admin/landing";
-import Link from "next/link";
 
 
 export default async function Page() {
@@ -55,16 +54,15 @@ export default async function Page() {
   return (
     <main className="flex-1">
       <HeaderLogged tokens={tokens} />
-        <div className="container mx-auto ">
-          <h1 className="text-2xl font-bold text-white mb-6 ps-6 pt-6">Panel de administración</h1>
-          <p className="text-white ps-6">Bienvenido al panel de administración. Aquí podrás gestionar los cursos, instructores, campeonatos y usuarios de la plataforma.</p>
-          <Link href="/admin/analytics" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-6 ms-6">Ir a panel de analíticas</Link>
+        <div className="container mx-auto">
+          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-6 ps-6 pt-6">Panel de Analíticas</h1>
+          <p className="text-white ps-6 w-3/4">Bienvenido al panel de analíticas. Aquí podrás ver información relevante sobre los cursos, instructores y usuarios de la plataforma.</p> 
+          
         </div>
-        <CourseList tokens={tokens}/>
-        <AdminInstructors tokens={tokens}/>
-        <AdminChamps tokens={tokens}/>
-        <AdminUsers/>
-        <AdminLanding />
+        <hr className="border-white border-1 mt-6 " />
+        <CourseList tokens={tokens} analytics={true} />
+        <hr className="border-white border-1 " />
+        <AdminUsers tokens={tokens} analytics={true} />
       <Footer />
     </main>
   )
