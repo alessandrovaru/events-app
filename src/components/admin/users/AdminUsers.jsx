@@ -92,8 +92,8 @@ export function AdminUsers({ analytics }) {
 
   if (analytics) {
     return (
-      <div className=" text-white p-6 rounded-lg shadow-lg w-full">
-        <h2 className="text-2xl font-bold mb-4">Cantidad de Inscritos en Cursos</h2>
+      <div className=" container mx-auto text-white p-6 rounded-lg shadow-lg w-full">
+        <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-4">Cantidad de Inscritos en Cursos</h2>
         <table className="min-w-full bg-white text-gray-700 rounded-lg shadow-lg">
           <thead>
             <tr>

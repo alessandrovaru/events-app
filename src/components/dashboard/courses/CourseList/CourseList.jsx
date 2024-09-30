@@ -70,11 +70,11 @@ export const CourseList = async ({ tokens, analytics }) => {
     return (
       <div className="container mx-auto grid grid-cols-2">
         <div>
-          <h2 className="text-2xl font-bold text-white ps-6 pt-6">Cantidad de cursos</h2>
+          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-white ps-6 pt-6">Cantidad de cursos</h2>
           <p className="text-2xl font-bold text-white mb-6 ps-6 pt-6">{courses.length}</p>
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-white ps-6 pt-6">Día más concurrido</h2>
+          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-white ps-6 pt-6">Día más concurrido</h2>
           <p className="text-2xl font-bold text-white mb-6 ps-6 pt-6">{numToDays[dayWithMostCourses]}</p>
         </div>
       </div>

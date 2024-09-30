@@ -55,11 +55,11 @@ export default async function Page() {
     <main className="flex-1">
       <HeaderLogged tokens={tokens} />
         <div className="container mx-auto">
-          <h1 className="text-5xl font-bold text-white mb-6 ps-6 pt-6">Panel de Analíticas</h1>
-          <p className="text-white ps-6 w-[30%]">Bienvenido al panel de analíticas. Aquí podrás ver información relevante sobre los cursos y usuarios de la plataforma.</p>
-          <hr className="border-white border-1 mt-6 " />
+          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-6 ps-6 pt-6">Panel de Analíticas</h1>
+          <p className="text-white ps-6 w-3/4">Bienvenido al panel de analíticas. Aquí podrás ver información relevante sobre los cursos, instructores y usuarios de la plataforma.</p> 
+          
         </div>
-        
+        <hr className="border-white border-1 mt-6 " />
         <CourseList tokens={tokens} analytics={true} />
         <hr className="border-white border-1 " />
         <AdminUsers tokens={tokens} analytics={true} />
