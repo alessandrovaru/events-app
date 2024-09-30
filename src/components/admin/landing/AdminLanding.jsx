@@ -104,10 +104,10 @@ export function AdminLanding() {
 }
 function renderLandingData(landingData, handleEdit) {
   return (
-    <div className="relative flex flex-col items-start justify-end p-6 bg-white rounded-lg shadow-md">
+    <div className="relative p-6 bg-white rounded-lg shadow-md">
       
-      <form className="w-full grid gap-4 sm:grid-cols-1 md:grid-cols-2" onSubmit={handleEdit}>
-        <div>
+      <form className="grid grid-cols-1 gap-4" onSubmit={handleEdit}>
+        <div className="col-span-1">
           {/* Hero Title */}
           <h2 className="text-2xl font-bold mb-4 text-gray-800">Sección Principal</h2>
           <div className="mb-4">
@@ -167,12 +167,12 @@ function renderLandingData(landingData, handleEdit) {
           {/* Botón de Envío (Opcional) */}
           
         </div>
-        <div>
+        <div  className="col-span-1">
           {/* Hero Title */}
           <h2 className="text-2xl font-bold mb-4 text-gray-800">Sección informativa</h2>
         
         </div>
-        <div className="col-span-2">
+        <div className="col-span-1">
           <button
             type="submit"
             className="w-full bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition-colors duration-200"

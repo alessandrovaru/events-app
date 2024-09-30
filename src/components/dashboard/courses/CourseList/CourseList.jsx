@@ -68,11 +68,15 @@ export const CourseList = async ({ tokens, analytics }) => {
   if(analytics) {
     const dayWithMostCourses = getDayWithMostCourses(courses);
     return (
-      <div className="container mx-auto">
-        <h2 className="text-2xl font-bold text-white  ps-6 pt-6">Cantidad de cursos</h2>
-        <p className="text-2xl font-bold text-white mb-6 ps-6 pt-6">{JSON.stringify(sortedCourses)}</p>
-        <h2 className="text-2xl font-bold text-white  ps-6 pt-6">Díaa de la semana con más cursos</h2>
-        <p className="text-2xl font-bold text-white mb-6 ps-6 pt-6">{numToDays[dayWithMostCourses]}</p>
+      <div className="container mx-auto grid grid-cols-2">
+        <div>
+          <h2 className="text-2xl font-bold text-white ps-6 pt-6">Cantidad de cursos</h2>
+          <p className="text-2xl font-bold text-white mb-6 ps-6 pt-6">{courses.length}</p>
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold text-white ps-6 pt-6">Día más concurrido</h2>
+          <p className="text-2xl font-bold text-white mb-6 ps-6 pt-6">{numToDays[dayWithMostCourses]}</p>
+        </div>
       </div>
     )
   }
