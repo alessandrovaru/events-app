@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/blob": "^0.24.0",
     "date-fns": "^4.1.0",
     "firebase": "^10.13.0",
     "firebase-admin": "^12.4.0",

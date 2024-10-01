@@ -29,6 +29,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'firebasestorage.googleapis.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'total-elite-training-blob.public.blob.vercel-storage.com',
+        port: '',
+      },
     ]
   }
 };
