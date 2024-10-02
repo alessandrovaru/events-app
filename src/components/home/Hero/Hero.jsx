@@ -1,3 +1,4 @@
+import listStorageData from "@/firebase/storage/listStorageData";
 import Image from "next/image"
 import Link from "next/link";
 
@@ -14,21 +15,16 @@ import Link from "next/link";
 //   }
 // }
 
-const data = {
-  title: "Desata Tu Luchador Interior",
-  description: "Únete a Total Elite Training y domina el arte del MMA. Entrenadores de clase mundial, instalaciones de última generación y una comunidad de apoyo te esperan.",
+const dataFb = {
   buttons: [
     { text: "Empieza Ahora", variant: "primary" },
     { text: "Horarios", variant: "outline" }
-  ],
-  image: {
-    src: "/images/main.jpg",
-    alt: "Imagen Principal"
-  }
+  ]
 }
 
-export const Hero = async () => {
-  const { title, description, buttons, image } = data;
+export const Hero = async ({data}) => {
+  const {  buttons } = dataFb;
+  const { heroTitle: title, heroDescription: description, heroImage: image } = data;
 
   return (
     <section className="w-full min-h-[75dvh] bg-black text-white flex items-center justify-center">
@@ -56,7 +52,7 @@ export const Hero = async () => {
             </div>
           </div>
           <div className="relative flex justify-center md:justify-end w-full order-first sm:order-last h-[200px] md:h-[400px] lg:h-[500px]">
-            <Image className="object-cover object-center rounded-lg" src={image.src} alt={image.alt} fill />
+            <Image className="object-cover object-center rounded-lg" src={image} alt={'hero image'} fill />
           </div>
         </div>
       </div>

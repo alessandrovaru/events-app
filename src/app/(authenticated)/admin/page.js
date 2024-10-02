@@ -9,7 +9,7 @@ import { NextClass } from "@/components/dashboard/courses/NextClass";
 import { AdminInstructors } from "@/components/admin/instructors/AdminInstructors";
 import { AdminChamps, ChampsList } from "@/components/admin/champs";
 import { AdminUsers } from "@/components/admin/users";
-import { AdminLanding } from "@/components/admin/landing";
+import { AdminHome  } from "@/components/admin/home";
 import Link from "next/link";
 import { ImageUpload } from "@/components/blob/ImageUpload";
 
@@ -66,7 +66,7 @@ export default async function Page() {
         <AdminInstructors tokens={tokens}/>
         <AdminChamps tokens={tokens}/>
         <AdminUsers/>
-        <AdminLanding />
+        <AdminHome />
       <Footer />
     </main>
   )
