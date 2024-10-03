@@ -66,7 +66,7 @@ export const ProfileCard = () => {
           <Link href='dashboard' className="bg-red-800 text-white p-2 rounded-lg hover:bg-red-900 transition mb-3 text-center">Dashboard</Link>
         </div>
         <div className="flex flex-col space-y-2 w-full">
-          <Link href='payments' className="bg-red-800 text-white p-2 rounded-lg hover:bg-red-900 transition mb-3 text-center">Pagos y facturas</Link>
+          <Link href='profile/payments' className="bg-red-800 text-white p-2 rounded-lg hover:bg-red-900 transition mb-3 text-center">Pagos y facturas</Link>
         </div>
         <Logout noProfile={true}/>
         <div className="mt-4 text-center text-sm text-gray-600">
