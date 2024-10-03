@@ -1,4 +1,3 @@
-import listStorageData from "@/firebase/storage/listStorageData";
 import Image from "next/image"
 import Link from "next/link";
 

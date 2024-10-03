@@ -31,7 +31,6 @@ export default async function Component() {
       const response = await fetch(`${baseUrl}/api/home`, {
         headers: {
           // Include Authorization header if your API route requires authentication
-          Authorization: tokens ? `Bearer ${tokens.token}` : "",
         },
         // Ensure credentials are included if needed
         // credentials: 'include',
