@@ -105,9 +105,9 @@ export function UserPayments({ analytics }) {
   }, [usersPayments]);
 
   return (
-    <section className="w-full  flex flex-col items-center justify-center bg-black overflow-x-scroll md:overflow-x-hidden lg:overflow-x-hidden">
+    <section className="w-full flex flex-col items-center justify-center bg-black overflow-x-scroll md:overflow-x-hidden lg:overflow-x-hidden">
       <div className="container px-4 md:px-6 text-white">
-        <h1 className="text-2xl font-bold mb-4 text-white">Admin Users</h1>
+        <h1 className="text-2xl font-bold mb-4 text-white">Pagos y facturas</h1>
         <table className="min-w-full bg-white text-black rounded-lg shadow-lg mb-8">
           <thead className="text-black">
             <tr>
@@ -139,8 +139,13 @@ export function UserPayments({ analytics }) {
         </table>
 
         {/* Botón que se muestra solo si hay al menos un pago en el mes y año actuales */}
-        {!isCurrentMonth && (
+        {!isCurrentMonth ? (
           <PaymentsModal />
+        ) : (
+          <>
+            <h2 className="text-xl font-bold mb-4">¡Estás al día!</h2>
+            <p className="text-lg font-bold mb-4">Ya has realizado un pago este mes.</p>
+          </>
         )}
 
       </div>
