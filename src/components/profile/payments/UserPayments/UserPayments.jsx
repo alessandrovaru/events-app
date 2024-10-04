@@ -31,6 +31,33 @@ export function UserPayments({ analytics }) {
       console.error('Error fetching payments:', error);
     }
   }
+
+  const handleDelete = async (id) => {
+    const token = user.idToken;
+
+    try {
+      const response = await fetch('/api/payments/delete', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ docId: id, token }),
+      })
+     
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Error al eliminar el Payment');
+      }
+
+      alert('Payment eliminado exitosamente.');
+      window.location.reload();
+    } catch (error) {
+
+      console.error('Error al eliminar el Payment:', error);
+      alert(error.message);
+    }
+  }
         
   const checkAdmin = async () => {
     try {
@@ -87,6 +114,7 @@ export function UserPayments({ analytics }) {
               <th className="py-2 px-4 border text-left">Tipo de pago</th>
               <th className="py-2 px-4 border text-left">Referencia</th>
               <th className="py-2 px-4 border text-left">Fecha</th>
+              <th className="py-2 px-4 border text-left">Borrar</th>
             </tr>
           </thead>
           <tbody>
@@ -97,6 +125,14 @@ export function UserPayments({ analytics }) {
                 </td>
                 <td className="py-2 px-4 border">{payment.reference}</td>
                 <td className="py-2 px-4 border">{payment.createdAt}</td>
+                <td className="py-2 px-4 border">
+                  <button
+                    onClick={() => handleDelete(payment.id)}
+                    className=" bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                  >
+                    x
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

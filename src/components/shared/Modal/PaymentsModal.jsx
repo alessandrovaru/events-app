@@ -24,6 +24,7 @@ export const PaymentsModal = () => {
     const data = {
       payment_type: formData.get('payment_type'),
       reference: formData.get('reference'),
+      userId: user.uid,
     }
 
     // Obtener el token de autenticación del usuario si lo estás usando

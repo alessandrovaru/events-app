@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
-    const { payment_type, reference, token } = await request.json();
+    const { payment_type, reference, userId, token } = await request.json();
 
     // Verificar la autenticación del usuario
     if (!token) {
@@ -15,7 +15,7 @@ export async function POST(request) {
     const uid = decodedToken.uid;
 
     // Validar los datos recibidos
-    if (!payment_type || !reference) {
+    if (!payment_type || !reference || !userId) {
       return NextResponse.json({ error: 'Todos los campos son requeridos.' }, { status: 400 });
     }
 
@@ -23,6 +23,7 @@ export async function POST(request) {
     const data = {
       payment_type,
       reference,
+      userId,
       createdAt: new Date(Date.now()).toLocaleString("en-US", { timeZone: "America/Caracas" }),
       createdBy: uid,
     };
