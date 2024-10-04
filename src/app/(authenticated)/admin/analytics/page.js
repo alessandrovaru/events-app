@@ -9,7 +9,7 @@ import { NextClass } from "@/components/dashboard/courses/NextClass";
 import { AdminInstructors } from "@/components/admin/instructors/AdminInstructors";
 import { AdminChamps, ChampsList } from "@/components/admin/champs";
 import { AdminUsers } from "@/components/admin/users";
-import { AdminLanding } from "@/components/admin/landing";
+import { AdminLanding } from "@/components/admin/home";
 
 
 export default async function Page() {

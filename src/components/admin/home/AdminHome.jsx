@@ -3,7 +3,7 @@ import { useAuth } from "@/app/auth/AuthContext";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-export function AdminLanding() {
+export function AdminHome() {
   const [landingData, setLandingData] = useState([]);
 
   const [isAdmin, setIsAdmin] = useState(false);
@@ -38,13 +38,12 @@ export function AdminLanding() {
       heroImage: formData.get('heroImage'),
     };
 
-    alert(JSON.stringify(data));
 
     // Obtener el token de autenticación del usuario si lo estás usando
     const token = user.idToken
 
     try {
-      const response = await fetch('/api/landing/edit', {
+      const response = await fetch('/api/home/edit', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -68,7 +67,7 @@ export function AdminLanding() {
   }
 
   const fetchLanding = async () => {
-    const response = await fetch("/api/landing", {
+    const response = await fetch("/api/admin/home", {
       headers: {
         'Authorization': `Bearer ${user.idToken}`
       }

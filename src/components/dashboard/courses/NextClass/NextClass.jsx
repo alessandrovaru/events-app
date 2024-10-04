@@ -98,7 +98,7 @@ export const NextClass = async ({ tokens }) => {
           {lockedCourses.map(course => (
             <div key={course.id} className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300`}>
               <div className="relative z-10">
-                <h2 className="text-2xl font-bold mb-2 text-white">{course.name}</h2>
+                <h2 className="text-2xl mb-2 text-white">{course.name}</h2>
                 <span className="text-white mb-4 text-xs">{course.time}</span>
                 <p className="text-white text-sm"><strong></strong> {course.location}</p>
                 <p>{course.discipline}</p>

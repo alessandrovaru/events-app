@@ -1,7 +1,7 @@
 'use client'
 
 import { useAuth } from "@/app/auth/AuthContext";
-import { AdminUsersModal } from "@/components/shared/Modal";
+import { AdminUsersModal, AdminUsersPaymentsModal } from "@/components/shared/Modal";
 import { PlusIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState, useMemo } from "react";
@@ -9,6 +9,7 @@ import { useEffect, useState, useMemo } from "react";
 export function AdminUsers({ analytics }) {
   const [usersData, setUsersData] = useState([]);
   const [courses, setCourses] = useState([]);
+  const [usersPayments, setUsersPayments] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
 
   const { user } = useAuth();
@@ -29,6 +30,28 @@ export function AdminUsers({ analytics }) {
       }
     } catch (error) {
       console.error('Error fetching courses:', error);
+    }
+  }
+
+  const fetchUserPayments = async (id) => {
+    try {
+      const response = await fetch("/api/payments/admin-user-payments", {
+        headers: {
+          'Authorization': `Bearer ${user.idToken}`,
+          'Content-Type': 'application/json',
+          'userId': id,
+        },
+      });
+    
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data.payments);
+        setUsersPayments(data.payments);
+      } else {
+        console.error('Error fetching payments:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching payments:', error);
     }
   }
 
@@ -154,6 +177,9 @@ export function AdminUsers({ analytics }) {
                     <AdminUsersModal isEditForm={true} userData={user} courses={courses} />
                   )}
                 </td>
+                <td className="py-2 px-4 border">
+                  <AdminUsersPaymentsModal data={user} fetchUserPayments={fetchUserPayments} usersPayments={usersPayments} />
+                </td>
               </tr>
             ))}
           </tbody>
@@ -161,4 +187,4 @@ export function AdminUsers({ analytics }) {
       </div>
     </section>
   );
-};
+}
