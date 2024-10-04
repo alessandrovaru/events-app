@@ -2,9 +2,11 @@ import { db, auth } from '@/lib/firebaseAdmin';
 import { NextResponse } from 'next/server';
 
 export async function GET(request) {
+  
   try {
     // Obtener el token de los headers de la solicitud
     const authHeader = request.headers.get('authorization');
+    const userId = request.headers.get('userId');
     const token = authHeader?.split('Bearer ')[1];
 
     if (!token) {
@@ -16,7 +18,7 @@ export async function GET(request) {
 
     // Verificar el token
     const decodedToken = await auth.verifyIdToken(token);
-    const userId = decodedToken.uid;
+    
 
     // Obtener los pagos del usuario autenticado
     const paymentsSnapshot = await db
