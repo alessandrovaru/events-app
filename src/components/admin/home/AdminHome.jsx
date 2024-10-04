@@ -38,7 +38,6 @@ export function AdminHome() {
       heroImage: formData.get('heroImage'),
     };
 
-    alert(JSON.stringify(data));
 
     // Obtener el token de autenticación del usuario si lo estás usando
     const token = user.idToken

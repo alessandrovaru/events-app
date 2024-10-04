@@ -17,6 +17,9 @@ export default function MobileDrawer({ isOpen, onClose, email }) {
           <Link href="/dashboard">Dashboard</Link>
         </li>
         <li className="text-xl hover:text-blue-900 hover:font-semibold">
+          <Link href="/profile">Perfil</Link>
+        </li>
+        <li className="text-xl hover:text-blue-900 hover:font-semibold">
           <Link href="/admin">Admin</Link>
         </li>
         <li className="text-xl hover:text-blue-900 hover:font-semibold">
