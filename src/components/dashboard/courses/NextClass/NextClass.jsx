@@ -3,6 +3,7 @@ import { getFirebaseAdminApp } from '@/app/firebase';
 import Image from "next/image";
 import { LockKeyhole } from "lucide-react";
 import Link from "next/link";
+import { ReservationsModal } from "@/components/shared/Modal";
 
 const db = getFirestore(getFirebaseAdminApp());
 
@@ -92,7 +93,7 @@ export const NextClass = async ({ tokens }) => {
       <div className="relative grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 p-6">
       {limitedClasses.length === 0 ? (
         <>
-          <div className="absolute h-full w-full top-0 left-0 bg-black bg-opacity-80 z-0 transition-opacity duration-300 flex items-center justify-center z-20">
+          <div className="absolute h-full w-full top-0 left-0 bg-black bg-opacity-80 transition-opacity duration-300 flex items-center justify-center z-10">
             <LockKeyhole />
           </div>
           {lockedCourses.map(course => (
@@ -114,23 +115,26 @@ export const NextClass = async ({ tokens }) => {
         </>
       ) : (
         limitedClasses.map(classItem => (
-          <Link href={`/courses/${classItem.id}`} key={`${classItem.id}-${classItem.day}`} className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300 ${days[classItem.today] === days[classItem.day] ? 'animate-pulse ' : ''}`}>
-            <div className="relative z-10">
-              <h2 className="text-2xl font-bold mb-2 text-white">{days[classItem.day]}</h2>
-              <span className="text-white mb-4 text-xs">{classItem.time}</span>
-              <p className="text-white text-sm"><strong></strong> {classItem.location}</p>
-              <p>{classItem.name}</p>
-              {days[classItem.today] === days[classItem.day] && (
-                <p className="text-white font-bold">Hoy</p>
-              )}
-              {classItem.isReservable && (
-                <button className="bg-white text-black text-xs px-3 py-1 rounded-lg hover:opacity-90">Reservar</button>
-              )}
-            </div>
-            <div className={`absolute h-full w-full top-0 left-0 ${colors[classItem.color]} bg-opacity-90 rounded-lg z-0 transition-opacity duration-300`}>
-              <Image src={classItem.image_url} className="object-cover mix-blend-darken rounded-lg" alt={classItem.name} fill={true} />
-            </div>
-          </Link>
+          <div key={`${classItem.id}-${classItem.day}`} className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300 hyphens-auto ${days[classItem.today] === days[classItem.day] ? 'animate-pulse ' : ''}`}>
+            <h2 className="relative text-2xl font-bold mb-2 text-white z-10">{days[classItem.day]}</h2>
+            <span className=" relative z-10 text-white mb-4 text-xs">{classItem.time}</span>
+            <p className=" relative z-10 text-white text-sm"><strong></strong> {classItem.location}</p>
+            <p className="relative z-10">{classItem.name}</p>
+            {days[classItem.today] === days[classItem.day] && (
+              <p className="relative z-10 text-white font-bold">Hoy</p>
+            )}
+
+            
+            <Link href={`/courses/${classItem.id}`}>
+              <button className=" relative z-10 bg-white text-black text-xs px-3 py-1 mr-3 rounded-lg hover:opacity-90">Ver clase</button>
+            </Link>
+            {classItem.isReservable && (
+              <ReservationsModal classItem={classItem} />
+            )}
+          <div className={`absolute h-full w-full top-0 left-0 ${colors[classItem.color]} bg-opacity-90 rounded-lg z-0 transition-opacity duration-300`}>
+            <Image src={classItem.image_url} className="object-cover mix-blend-darken rounded-lg" alt={classItem.name} fill={true} />
+          </div>
+        </div>
         ))
       )}
       </div>

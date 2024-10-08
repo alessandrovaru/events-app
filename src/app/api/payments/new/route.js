@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
-    const { payment_type, reference, userId, token } = await request.json();
+    const { payment_type, reference, userId, payment_for, token } = await request.json();
 
     // Verificar la autenticación del usuario
     if (!token) {
@@ -24,6 +24,7 @@ export async function POST(request) {
       payment_type,
       reference,
       userId,
+      payment_for, 
       createdAt: new Date(Date.now()).toLocaleString("en-US", { timeZone: "America/Caracas" }),
       createdBy: uid,
     };
