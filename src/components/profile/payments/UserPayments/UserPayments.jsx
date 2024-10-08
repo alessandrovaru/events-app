@@ -97,11 +97,14 @@ export function UserPayments({ analytics }) {
     const currentYear = current.getFullYear();
     console.log(currentMonth, currentYear);
 
-    // Verificar si algún pago coincide con el mes y año actuales
+    // Verificar si algún pago coincide con el mes y año actuales y si es un pago mensual
     return usersPayments.some(payment => {
       const paymentDate = new Date(payment.createdAt);
-      return paymentDate.getMonth() === currentMonth && paymentDate.getFullYear() === currentYear;
-    });
+      const paymentMonth = paymentDate.getMonth();
+      const paymentYear = paymentDate.getFullYear();
+      return paymentMonth === currentMonth && paymentYear === currentYear && payment.payment_for === 'monthly payment';
+    }
+    );
   }, [usersPayments]);
 
   return (
@@ -112,6 +115,7 @@ export function UserPayments({ analytics }) {
           <thead className="text-black">
             <tr>
               <th className="py-2 px-4 border text-left">Tipo de pago</th>
+              <th className="py-2 px-4 border text-left">Descripción</th>
               <th className="py-2 px-4 border text-left">Referencia</th>
               <th className="py-2 px-4 border text-left">Fecha</th>
               <th className="py-2 px-4 border text-left">Borrar</th>
@@ -123,6 +127,7 @@ export function UserPayments({ analytics }) {
                 <td className="py-2 px-4 border">
                   {payment.payment_type}
                 </td>
+                <td className="py-2 px-4 border">{payment.payment_for}</td>
                 <td className="py-2 px-4 border">{payment.reference}</td>
                 <td className="py-2 px-4 border">{payment.createdAt}</td>
                 <td className="py-2 px-4 border">
@@ -138,7 +143,8 @@ export function UserPayments({ analytics }) {
           </tbody>
         </table>
 
-        {/* Botón que se muestra solo si hay al menos un pago en el mes y año actuales */}
+        {/* Botón que se muestra solo si hay al menos un pago en el mes y año actuales y  ese pago es payment_for === 'monthly payment' */}
+
         {!isCurrentMonth ? (
           <PaymentsModal />
         ) : (

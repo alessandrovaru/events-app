@@ -22,6 +22,7 @@ export const PaymentsModal = () => {
     const formData = new FormData(form);
 
     const data = {
+      payment_for: "monthly payment",
       payment_type: formData.get('payment_type'),
       reference: formData.get('reference'),
       userId: user.uid,
