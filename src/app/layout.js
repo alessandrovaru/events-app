@@ -1,17 +1,14 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
-
-
-import { Footer } from "@/components/shared/Footer"
-import { Header } from "@/components/shared/Header"
-
-
 import { getTokens } from "next-firebase-auth-edge";
 import { cookies } from "next/headers";
 import { clientConfig, serverConfig } from '@/config'
 import { AuthProvider } from './auth/AuthProvider'
 import { toUser } from './shared/user'
 import localFont from "next/font/local";
+
+import { Analytics } from "@vercel/analytics/react"
+
 
 export const metadata = {
   title: 'Total Elite Training - Academia de Artes Marciales',
@@ -49,7 +46,7 @@ export default async function RootLayout({ children }) {
           <AuthProvider user={user}>
             
             {children}
-            
+            <Analytics />
           </AuthProvider>
         </div>
       </body>
