@@ -8,11 +8,44 @@ import { toUser } from './shared/user'
 import localFont from "next/font/local";
 
 import { Analytics } from "@vercel/analytics/react"
+import listStorageData from "@/firebase/firestore/listData";
+import getMetadata from '@/firebase/firestore/listSingleObject';
 
+export async function generateMetadata() {
+  const metadata = await getMetadata("home"); // Replace with your actual doc ID
 
-export const metadata = {
-  title: 'Total Elite Training - Academia de Artes Marciales',
-  description: 'Academia de artes marciales en tu área',
+  const baseUrl =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000"
+        : process.env.NEXT_PUBLIC_BASE_URL;
+
+  if (!metadata) {
+    // Handle the case where metadata is not found
+    return {
+      title: "Default Title",
+      description: "Default Description",
+      // ... other default metadata
+    };
+  }
+
+  return {
+    title: metadata.title,
+    description: metadata.description,
+    openGraph: {
+      title: metadata.title,
+      description: metadata.description,
+      url: baseUrl, // Replace with your actual URL
+      siteName: metadata.siteName,
+      images: [
+        {
+          url: metadata.imageUrl,
+          width: 1366,
+          height: 768,
+        },
+      ],
+      locale: 'es_ES',
+    },
+  };
 }
 
 const questrial = localFont({ 
@@ -21,7 +54,6 @@ const questrial = localFont({
 })
 
 const inter = Inter({ subsets: ['latin'], variable: '--inter-font' })
-
 
 // config your font
 const microgramma = localFont({
@@ -44,7 +76,6 @@ export default async function RootLayout({ children }) {
       <body className={`${questrial.variable} ${microgramma.className}`}>
         <div className="flex flex-col min-h-screen bg-black">
           <AuthProvider user={user}>
-            
             {children}
             <Analytics />
           </AuthProvider>
