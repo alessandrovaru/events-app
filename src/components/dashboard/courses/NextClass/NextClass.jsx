@@ -108,14 +108,14 @@ export const NextClass = async ({ tokens }) => {
                 )}
               </div>
               <div className={`absolute h-full w-full top-0 left-0 bg-${course.color}-700 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300`}>
-                <Image src={course.image_url} className="object-cover mix-blend-darken rounded-lg" alt={course.name} fill={true} />
+                <Image src={course.image_url} className="object-cover mix-blend-darken rounded-lg" alt={course.name} fill />
               </div>
             </div>
           ))}
         </>
       ) : (
         limitedClasses.map(classItem => (
-          <div key={`${classItem.id}-${classItem.day}`} className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300 hyphens-auto ${days[classItem.today] === days[classItem.day] ? 'animate-pulse ' : ''}`}>
+          <div key={`${classItem.id}-${classItem.day}`} className={`relative course-card p-6 cursor-pointer rounded-lg transition-shadow duration-300 hyphens-auto `}>
             <h2 className="relative text-2xl font-bold mb-2 text-white z-10">{days[classItem.day]}</h2>
             <span className=" relative z-10 text-white mb-4 text-xs">{classItem.time}</span>
             <p className=" relative z-10 text-white text-sm"><strong></strong> {classItem.location}</p>
@@ -132,7 +132,7 @@ export const NextClass = async ({ tokens }) => {
               <ReservationsModal classItem={classItem} />
             )}
           <div className={`absolute h-full w-full top-0 left-0 ${colors[classItem.color]} bg-opacity-90 rounded-lg z-0 transition-opacity duration-300`}>
-            <Image src={classItem.image_url} className="object-cover mix-blend-darken rounded-lg" alt={classItem.name} fill={true} />
+            <Image src={classItem.image_url} className="object-cover mix-blend-darken rounded-lg" alt={classItem.name} fill />
           </div>
         </div>
         ))

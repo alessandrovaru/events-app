@@ -157,7 +157,7 @@ function rendermetadata(metadata, handleEdit) {
                   src={metadata.imageUrl}
                   alt="Hero Image"
                   fill
-                  objectFit="cover"
+                  className="object-cover"
                 />
               </div>
             )}

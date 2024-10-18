@@ -60,8 +60,7 @@ export function CourseDetail({ course }) {
             src={image_url}
             alt={name}
             fill
-            objectFit="cover"
-            className="object-center"
+            className="object-cover"
             priority
           />
         </div>

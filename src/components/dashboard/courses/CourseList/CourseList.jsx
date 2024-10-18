@@ -96,7 +96,7 @@ export const CourseList = async ({ tokens, analytics }) => {
             <p className="text-white text-sm">{course.description.slice(0, 62)}...</p>
           </div>
           <div className={`absolute h-full w-full top-0 left-0 bg-gray-600 bg-opacity-90 rounded-lg z-0 transition-opacity duration-300`}>
-            <Image src={course.image_url} className="object-cover mix-blend-darken rounded-lg" alt={course.name} fill={true} />
+            <Image src={course.image_url} className="object-cover mix-blend-darken rounded-lg" alt={course.name} fill />
           </div>
           {!isAdmin && !userCourseIds?.includes(course.id) ? (
             <div className="absolute bg-black h-full w-full top-0 left-0 opacity-50 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center rounded-lg cursor-pointer">
