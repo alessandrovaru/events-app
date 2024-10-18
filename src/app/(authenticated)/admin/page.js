@@ -12,6 +12,7 @@ import { AdminUsers } from "@/components/admin/users";
 import { AdminHome  } from "@/components/admin/home";
 import Link from "next/link";
 import { ImageUpload } from "@/components/blob/ImageUpload";
+import { AdminMetadata } from "@/components/admin/metadata";
 
 
 export default async function Page() {
@@ -67,6 +68,7 @@ export default async function Page() {
         <AdminChamps tokens={tokens}/>
         <AdminUsers/>
         <AdminHome />
+        <AdminMetadata />
       <Footer />
     </main>
   )

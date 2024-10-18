@@ -1,0 +1,1 @@
+export { AdminMetadata } from './AdminMetadata';
