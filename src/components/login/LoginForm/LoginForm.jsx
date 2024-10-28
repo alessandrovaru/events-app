@@ -22,6 +22,7 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [hasLogged, setHasLogged] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const redirect = useRedirectParam();
@@ -30,7 +31,9 @@ export function LoginForm() {
 
 
   async function handleLogin(credential) {
+    setIsLoading(true);
     await loginWithCredential(credential);
+    setIsLoading(false);
     redirectAfterLogin();
   }
 
@@ -60,6 +63,7 @@ export function LoginForm() {
 
   
   async function handleLoginWithRedirect() {
+    setIsLoading(true);
     setHasLogged(false);
     const auth = getFirebaseAuth();
     const credential = await getRedirectResult(auth);
@@ -68,7 +72,9 @@ export function LoginForm() {
       await processUser(credential.user);
       await handleLogin(credential);
       setHasLogged(true);
+      
     }
+    setIsLoading(false);
   }
 
 
@@ -124,11 +130,11 @@ export function LoginForm() {
     <div className="w-full rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-800">
       <div className="p-6">
         
-      {hasLogged && (
-        <div >
-          <span>
-            Cargando...
-          </span>
+      {isLoading && (
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white">
+            
+          </div>
         </div>
       )}
         <Image src={logo} alt="logo" width={100} height={100} />
