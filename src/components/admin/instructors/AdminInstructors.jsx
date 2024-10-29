@@ -6,8 +6,8 @@ import { useState, useEffect } from "react";
 
 export function AdminInstructors() {
   const [instructorsData, setInstructorsData] = useState([]);
-
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   const { user } = useAuth();
 
@@ -25,8 +25,6 @@ export function AdminInstructors() {
       console.error('Error al obtener los datos del usuario:', response.statusText);
     }
   }
-
-  
 
   const fetchInstructors = async () => {
     const response = await fetch("/api/instructors", {
@@ -46,29 +44,61 @@ export function AdminInstructors() {
   useEffect(() => {
     fetchInstructors();
     checkAdmin();
+  }, []);
+
+  const toggleVisibility = () => {
+    setIsVisible(prev => !prev);
   }
-  , []);
 
   return (
     <>
-      <section className="w-full py-12 md:py-24 lg:py-32 flex items-center justify-center bg-black">
-        <div className="container px-4 md:px-6 text white">
-          <h2 className="text-2xl font-bold mb-12 text-white">Instructores</h2>
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-6">
-            {instructorsData?.map((instructor, index) => (
-              <div key={index} className="relative flex flex-col items-start justify-end space-y-2 border-gray-800 p-4 bg-gray-400 h-[600px] rounded-lg hover:bg-gray-200 transition duration-300 cursor-pointer z-7">
-                <Image src={instructor.image_url} alt={`Instructor ${index + 1}`} className="h-full w-full mb-2 object-cover rounded-lg z-0 mix-blend-multiply" fill />
-                <h2 className="text-xl font-bold text-white z-10">{instructor.first_name + " " + instructor.last_name}</h2>
-                <p className="text-sm text-white z-10">{instructor.description}</p>
-                {isAdmin ? (
-                  <AdminInstructorsModal isEditForm={true} instructors={instructor} />
-                ) : null}
+      <section className="w-full py-16 flex items-center justify-center bg-gradient-to-b from-black via-gray-900 to-black">
+        <div className="container text-white">
+          {/* <button 
+            onClick={toggleVisibility}
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-6 ms-6"
+          >
+            {isVisible ? 'Ocultar Instructores' : 'Editar Instructores'}
+          </button> */}
+
+          {isVisible && (
+            <div className="px-6 py-6">
+              <h2 className="text-3xl font-extrabold mb-12 text-left text-white">
+                Instructores
+              </h2>
+              <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {instructorsData?.map((instructor, index) => (
+                  <div 
+                    key={index} 
+                    className="relative group overflow-hidden bg-gradient-to-t from-gray-800 to-gray-600 rounded-xl shadow-md hover:shadow-xl transition-all duration-300  h-[300px] "
+                  >
+                    <div className="absolute inset-0 w-full h-full z-0">
+                      <Image 
+                        src={instructor.image_url} 
+                        alt={`Instructor ${index + 1}`} 
+                        className="w-full h-full object-cover object-center transition-transform duration-500 transform group-hover:scale-110 opacity-50"
+                        fill
+                      />
+                    </div>
+                    <div className="z-10 w-full text-left bg-opacity-70 bg-black p-4 rounded-lg h-full flex flex-col justify-end">
+                      <h2 className="relative text-xl font-semibold text-white mb-2">
+                        {instructor.first_name + " " + instructor.last_name}
+                      </h2>
+                      <p className="relative text-sm text-gray-300">
+                        {instructor.description}
+                      </p>
+                      {isAdmin && (
+                        <AdminInstructorsModal isEditForm={true} instructors={instructor} />
+                      )}
+                    </div>
+                  </div>
+                ))}
+                {isAdmin && (
+                  <AdminInstructorsModal />
+                )}
               </div>
-            ))}
-            {isAdmin && (
-              <AdminInstructorsModal />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </section>  
     </>
