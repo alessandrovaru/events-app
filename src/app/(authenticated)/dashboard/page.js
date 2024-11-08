@@ -26,8 +26,11 @@ export default async function Page() {
   return (
     <main className="flex-1">
       <HeaderLogged tokens={tokens} />
-      <NextClass tokens={tokens}/>
-      <CourseList tokens={tokens}/>
+      {/* <NextClass tokens={tokens}/>
+      <CourseList tokens={tokens}/> */}
+      <div className="container mx-auto">
+        <h1 className="text-2xl font-bold mt-8 px-3">Dashboard</h1>
+      </div>
       <Footer />
     </main>
   )

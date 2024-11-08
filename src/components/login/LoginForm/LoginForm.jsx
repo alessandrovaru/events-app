@@ -15,6 +15,7 @@ import logo from "/public/images/logo.jpg";
 import Link from "next/link";
 import { getRedirectResult } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { Wallet } from "lucide-react";
 
 
 export function LoginForm() {
@@ -137,9 +138,9 @@ export function LoginForm() {
           </div>
         </div>
       )}
-        <Image src={logo} alt="logo" width={100} height={100} />
-        <h1 className="text-5xl font-bold leading-tight tracking-tight text-gray-900 md:text-6xl text-white mb-3">
-          Total Elite Training
+        <Wallet className="w-8 h-8 text-white mb-3" />
+        <h1 className="text-4xl font-bold leading-tight tracking-tight text-gray-900 md:text-4xl text-white mb-3">
+          Payments App
         </h1>
         <h2 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-white">
           Inicio de sesión
