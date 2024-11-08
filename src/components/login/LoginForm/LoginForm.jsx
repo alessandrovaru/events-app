@@ -140,7 +140,7 @@ export function LoginForm() {
       )}
         <Wallet className="w-8 h-8 text-white mb-3" />
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-gray-900 md:text-4xl text-white mb-3">
-          Payments App
+          Events App
         </h1>
         <h2 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-white">
           Inicio de sesión

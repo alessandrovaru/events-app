@@ -34,6 +34,11 @@ const nextConfig = {
         hostname: 'total-elite-training-blob.public.blob.vercel-storage.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'ik.imagekit.io',
+        port: ''
+      }
     ]
   }
 };

@@ -139,7 +139,7 @@ function renderLandingData(landingData, handleEdit) {
           </div>
 
           {/* Hero Image */}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label htmlFor="heroImage" className="block text-sm font-medium text-gray-700 mb-1">
               Imagen Principal
             </label>
@@ -161,7 +161,7 @@ function renderLandingData(landingData, handleEdit) {
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-black"
               placeholder="Ingrese la URL de la imagen principal"
             />
-          </div>
+          </div> */}
 
           {/* Botón de Envío (Opcional) */}
           

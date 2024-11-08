@@ -4,7 +4,7 @@ import { useAuth } from '@/app/auth/AuthContext';
 import { Edit, PenTool, PlusCircle, TowerControl } from 'lucide-react';
 import { useState } from 'react';
 
-export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
+export const AdminEventsModal = ({ isEditForm, events }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
 
@@ -20,11 +20,11 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const days = formData.getAll('days').map(Number); // Obtener todos los valores seleccionados y convertirlos a números
 
     const data = {
-      first_name: formData.get('first_name'),
-      last_name: formData.get('last_name'),
+      name: formData.get('name'),
+      country: formData.get('country'),
+      city: formData.get('city'),
       description: formData.get('description'),
       image_url: formData.get('image_url'),
     };
@@ -33,7 +33,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
     const token = user.idToken
 
     try {
-      const response = await fetch('/api/instructors/addInstructor', {
+      const response = await fetch('/api/events/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,10 +47,10 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
         handleClose();
         window.location.reload();
       } else {
-        console.error('Error al crear el instructorc:', response.statusText);
+        console.error('Error al crear el event:', response.statusText);
       }
     } catch (error) {
-      console.error('Error al crear el instructor:', error);
+      console.error('Error al crear el event:', error);
     }
   }
 
@@ -60,9 +60,10 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
     const formData = new FormData(form);
     
     const data = {
-      docId: instructors.id,
-      first_name: formData.get('first_name'),
-      last_name: formData.get('last_name'),
+      docId: events.id,
+      name: formData.get('name'),
+      country: formData.get('country'),
+      city: formData.get('city'),
       description: formData.get('description'),
       image_url: formData.get('image_url'),
     };
@@ -71,7 +72,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
     const token = user.idToken
 
     try {
-      const response = await fetch('/api/instructors/editInstructor', {
+      const response = await fetch('/api/events/edit', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -83,14 +84,14 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || 'Error al editar el curso.');
+        throw new Error(result.error || 'Error al editar el event.');
       }
 
-      alert('Curso actualizado exitosamente.');
+      alert('event actualizado exitosamente.');
       handleClose();
       window.location.reload();
     } catch (error) {
-      console.error('Error al editar el curso:', error);
+      console.error('Error al editar el event:', error);
       alert(error.message);
     }
   }
@@ -99,12 +100,12 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
     const token = user.idToken;
 
     try {
-      const response = await fetch('/api/instructors/deleteInstructor', {
+      const response = await fetch('/api/events/delete', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ docId: instructors.id, token }),
+        body: JSON.stringify({ docId: events.id, token }),
       })
      
       const result = await response.json();
@@ -149,34 +150,50 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
               <div className="mt-2">
               <form className="space-y-6" onSubmit={handleEdit}>
               <div>
-                        <label htmlFor="first_name" className="block text-gray-700 text-sm font-bold mb-2">
+                        <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
                           Nombre
                         </label>
                         <div className="mt-1">
                           <input
                             type="text"
-                            name="first_name"
-                            id="first_name"
-                            autoComplete="first_name"
+                            name="name"
+                            id="name"
+                            autoComplete="name"
                             required
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            defaultValue={instructors?.first_name}
+                            defaultValue={events?.name}
                           />
                         </div>
                       </div>
                       <div>
-                        <label htmlFor="last_name" className="block text-gray-700 text-sm font-bold mb-2">
-                          Apellido
+                        <label htmlFor="country" className="block text-gray-700 text-sm font-bold mb-2">
+                          Country
                         </label>
                         <div className="mt-1">
                           <input
                             type="text"
-                            name="last_name"
-                            id="last_name"
-                            autoComplete="last_name"
+                            name="country"
+                            id="country"
+                            autoComplete="country"
                             required
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            defaultValue={instructors?.last_name}
+                            defaultValue={events?.country}
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label htmlFor="city" className="block text-gray-700 text-sm font-bold mb-2">
+                          City
+                        </label>
+                        <div className="mt-1">
+                          <input
+                            type="text"
+                            name="city"
+                            id="city"
+                            autoComplete="city"
+                            required
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            defaultValue={events?.city}
                           />
                         </div>
                       </div>
@@ -191,7 +208,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
                             autoComplete="description"
                             required
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            defaultValue={instructors?.description}
+                            defaultValue={events?.description}
                           />
                         </div>
                       </div>
@@ -199,7 +216,6 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
                         <label htmlFor="image_url" className="block text-gray-700 text-sm font-bold mb-2">
                           URL de la imagen
                         </label>
-                        <span className="text-xs text-gray-500">* You can upload the image to <a className="text-blue-500" href={process.env.NEXT_PUBLIC_FIREBASE_INSTRUCTORS_IMAGES_BUCKET} target="_blank" rel="noreferrer">firebase</a> and copy the direct link.</span>
                         <div className="mt-1">
                           <input
                             type="text"
@@ -208,7 +224,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
                             autoComplete="image_url"
                             required
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            defaultValue={instructors?.image_url}
+                            defaultValue={events?.image_url}
                           />
                         </div>
                       </div>
@@ -251,34 +267,49 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
             &times;
           </button>
           <div className="mt-3">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">Agrega un nuevo instructor</h3>
+            <h3 className="text-lg leading-6 font-medium text-gray-900">Add a new event</h3>
             <div className="mt-2">
             <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-                      <label htmlFor="first_name" className="block text-gray-700 text-sm font-bold mb-2">
-                        Nombre
+                      <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
+                        Event Name
                       </label>
                       <div className="mt-1">
                         <input
                           type="text"
-                          name="first_name"
-                          id="first_name"
-                          autoComplete="first_name"
+                          name="name"
+                          id="name"
+                          autoComplete="name"
                           required
                           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                       </div>
                     </div>
                     <div>
-                      <label htmlFor="last_name" className="block text-gray-700 text-sm font-bold mb-2">
-                        Apellido
+                      <label htmlFor="country" className="block text-gray-700 text-sm font-bold mb-2">
+                        Country
                       </label>
                       <div className="mt-1">
                         <input
                           type="text"
-                          name="last_name"
-                          id="last_name"
-                          autoComplete="last_name"
+                          name="country"
+                          id="country"
+                          autoComplete="country"
+                          required
+                          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="city" className="block text-gray-700 text-sm font-bold mb-2">
+                        City
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          type="text"
+                          name="city"
+                          id="city"
+                          autoComplete="city"
                           required
                           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
@@ -286,7 +317,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
                     </div>
                     <div>
                       <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">
-                        Descripción
+                        Description
                       </label>
                       <div className="mt-1">
                         <textarea
@@ -302,7 +333,7 @@ export const AdminInstructorsModal = ({ isEditForm, instructors }) => {
                       <label htmlFor="image_url" className="block text-gray-700 text-sm font-bold mb-2">
                        URL de la imagen
                       </label>
-                      <span className="text-xs text-gray-500">* La imagen la puedes subir a <a className="text-blue-500" href={process.env.NEXT_PUBLIC_FIREBASE_INSTRUCTORS_IMAGES_BUCKET} target="_blank" rel="noreferrer">firebase</a> y copiar el enlace directo.</span>
+                      <span className="text-xs text-gray-500">* La imagen la puedes subir a <a className="text-blue-500" href="www.google.com" target="_blank" rel="noreferrer">firebase</a> y copiar el enlace directo.</span>
                       <div className="mt-1">
                         <input
                           type="text"

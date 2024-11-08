@@ -6,7 +6,7 @@ export default function LogoLink() {
     <div className="text-center sm:mb-0 sm:ms-4">
       <Link className="flex items-center justify-start" href="#">
         <Wallet className="w-8 h-8 text-white mr-2" />
-        <span className="font-bold">Payments App</span>
+        <span className="font-bold">Events App</span>
       </Link>
     </div>
   );

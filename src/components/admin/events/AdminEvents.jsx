@@ -1,11 +1,11 @@
 'use client';
 import { useAuth } from "@/app/auth/AuthContext";
-import { AdminInstructorsModal, Modal } from "@/components/shared/Modal";
+import { AdminEventsModal, AdminInstructorsModal, Modal } from "@/components/shared/Modal";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-export function AdminInstructors() {
-  const [instructorsData, setInstructorsData] = useState([]);
+export function AdminEvents() {
+  const [eventsData, setEventsData] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -26,8 +26,8 @@ export function AdminInstructors() {
     }
   }
 
-  const fetchInstructors = async () => {
-    const response = await fetch("/api/instructors", {
+  const fetchEvents = async () => {
+    const response = await fetch("/api/events", {
       headers: {
         'Authorization': `Bearer ${user.idToken}`
       }
@@ -35,14 +35,14 @@ export function AdminInstructors() {
     
     if (response.ok) {
       const data = await response.json();
-      setInstructorsData(data.instructors);
+      setEventsData(data.events);
     } else {
       console.error('Error al obtener los instructores:', response.statusText);
     }
   }
 
   useEffect(() => {
-    fetchInstructors();
+    fetchEvents();
     checkAdmin();
   }, []);
 
@@ -64,10 +64,10 @@ export function AdminInstructors() {
           {isVisible && (
             <div className="px-6 py-6">
               <h2 className="text-3xl font-extrabold mb-12 text-left text-white">
-                Instructores
+                Events
               </h2>
               <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {instructorsData?.map((instructor, index) => (
+                {eventsData?.map((instructor, index) => (
                   <div 
                     key={index} 
                     className="relative group overflow-hidden bg-gradient-to-t from-gray-800 to-gray-600 rounded-xl shadow-md hover:shadow-xl transition-all duration-300  h-[300px] "
@@ -82,19 +82,25 @@ export function AdminInstructors() {
                     </div>
                     <div className="z-10 w-full text-left bg-opacity-70 bg-black p-4 rounded-lg h-full flex flex-col justify-end">
                       <h2 className="relative text-xl font-semibold text-white mb-2">
-                        {instructor.first_name + " " + instructor.last_name}
+                        {instructor.name}
                       </h2>
+                      <p className="relative text-sm text-gray-300">
+                        {instructor.country}
+                      </p>
+                      <p className="relative text-sm text-gray-300">
+                        {instructor.city}
+                      </p>
                       <p className="relative text-sm text-gray-300">
                         {instructor.description}
                       </p>
                       {isAdmin && (
-                        <AdminInstructorsModal isEditForm={true} instructors={instructor} />
+                        <AdminEventsModal isEditForm={true} events={instructor} />
                       )}
                     </div>
                   </div>
                 ))}
                 {isAdmin && (
-                  <AdminInstructorsModal />
+                  <AdminEventsModal />
                 )}
               </div>
             </div>

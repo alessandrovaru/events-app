@@ -6,13 +6,13 @@ import { HeaderLogged } from "@/components/shared/Header";
 import { Footer } from "@/components/shared/Footer";
 import { CourseList } from "@/components/dashboard/courses/CourseList";
 import { NextClass } from "@/components/dashboard/courses/NextClass";
-import { AdminInstructors } from "@/components/admin/instructors/AdminInstructors";
 import { AdminChamps, ChampsList } from "@/components/admin/champs";
 import { AdminUsers } from "@/components/admin/users";
 import { AdminHome  } from "@/components/admin/home";
 import Link from "next/link";
 import { ImageUpload } from "@/components/blob/ImageUpload";
 import { AdminMetadata } from "@/components/admin/metadata";
+import { AdminEvents } from "@/components/admin/events";
 
 
 export default async function Page() {
@@ -63,9 +63,7 @@ export default async function Page() {
           <Link href="/admin/analytics" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-6 ms-6">Ir a panel de analíticas</Link>
           
         </div>
-        <CourseList tokens={tokens}/>
-        <AdminInstructors tokens={tokens}/>
-        <AdminChamps tokens={tokens}/>
+        <AdminEvents />
         <AdminUsers/>
         <AdminHome />
         <AdminMetadata />

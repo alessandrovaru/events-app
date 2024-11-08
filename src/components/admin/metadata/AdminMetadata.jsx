@@ -147,29 +147,6 @@ function rendermetadata(metadata, handleEdit) {
             />
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700 mb-1">
-              URL de la Imagen
-            </label>
-            {metadata.imageUrl && (
-              <div className="w-full h-48 relative mb-2 rounded-md overflow-hidden">
-                <Image
-                  src={metadata.imageUrl}
-                  alt="Hero Image"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            )}
-            <input
-              type="text"
-              id="imageUrl"
-              name="imageUrl"
-              defaultValue={metadata.imageUrl}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-black"
-              placeholder="Ingrese la URL de la imagen"
-            />
-          </div>
         </div>
         <div className="col-span-1">
           <button

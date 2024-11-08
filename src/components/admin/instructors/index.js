@@ -1,1 +1,0 @@
-export { AdminInstructors } from './AdminInstructors';

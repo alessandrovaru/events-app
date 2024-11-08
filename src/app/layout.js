@@ -11,6 +11,7 @@ import { Analytics } from "@vercel/analytics/react"
 import listStorageData from "@/firebase/firestore/listData";
 import getMetadata from '@/firebase/firestore/listSingleObject';
 
+
 export async function generateMetadata() {
   const metadata = await getMetadata("home"); // Replace with your actual doc ID
 
@@ -38,7 +39,7 @@ export async function generateMetadata() {
       siteName: metadata.siteName,
       images: [
         {
-          url: metadata.imageUrl,
+          url: "/images/metadata/metadata-image.webp", // Replace with your actual image URL
           width: 1366,
           height: 768,
         },

@@ -233,7 +233,6 @@ export const Modal = ({ isEditForm, course }) => {
                       <label htmlFor="image_url" className="block text-gray-700 text-sm font-bold mb-2 mt-4">
                         URL de la imagen
                       </label>
-                      <span className="text-xs text-gray-500">* La imagen la puedes subir a <a className="text-blue-500" href={process.env.NEXT_PUBLIC_FIREBASE_INSTRUCTORS_IMAGES_BUCKET} target="_blank" rel="noreferrer">firebase</a> y copiar el enlace directo.</span>
                       <input
                         type="text"
                         name="image_url"
