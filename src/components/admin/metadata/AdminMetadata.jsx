@@ -153,7 +153,7 @@ function rendermetadata(metadata, handleEdit) {
             type="submit"
             className="w-full bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition-colors duration-200"
           >
-            Guardar Cambios
+            Save changes
           </button>
         </div>
       </form>

@@ -108,7 +108,7 @@ function renderLandingData(landingData, handleEdit) {
       <form className="grid grid-cols-1 gap-4" onSubmit={handleEdit}>
         <div className="col-span-1">
           {/* Hero Title */}
-          <h2 className="text-2xl font-bold mb-4 text-gray-800">Sección Principal</h2>
+          <h2 className="text-2xl font-bold mb-4 text-gray-800">Hero Section</h2>
           <div className="mb-4">
             <label htmlFor="heroTitle" className="block text-sm font-medium text-gray-700 mb-1">
               Título Principal
@@ -168,7 +168,6 @@ function renderLandingData(landingData, handleEdit) {
         </div>
         <div  className="col-span-1">
           {/* Hero Title */}
-          <h2 className="text-2xl font-bold mb-4 text-gray-800">Sección informativa</h2>
         
         </div>
         <div className="col-span-1">
@@ -176,7 +175,7 @@ function renderLandingData(landingData, handleEdit) {
             type="submit"
             className="w-full bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition-colors duration-200"
           >
-            Guardar Cambios
+            Save changes
           </button>
         </div>
       </form>
