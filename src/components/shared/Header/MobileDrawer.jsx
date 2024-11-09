@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function MobileDrawer({ isOpen, onClose, email }) {
   return (
     <div
-      className={`z-20 fixed flex flex-col justify-center items-center z-10 top-0 right-0 h-full w-full bg-white text-black transition-transform duration-300 transform ${
+      className={`z-30 fixed flex flex-col justify-center items-center z-10 top-0 right-0 h-full w-full bg-white text-black transition-transform duration-300 transform ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
