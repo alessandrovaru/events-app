@@ -88,8 +88,8 @@ export function AdminMetadata() {
     <>
       <section className="w-full flex items-center justify-center bg-black">
         <div className="container px-4 md:px-6 text white">
-          <h2 className="text-2xl font-bold mb-12 text-white">Administra la Metadata</h2>
-          <p className="text-white pb-12">Aquí podrás gestionar la metadata de la página principal.</p>
+          <h2 className="text-2xl font-bold mb-12 text-white mt-12">Admin Metadata</h2>
+          <p className="text-white pb-12">Here you can edit the metadata of the website.</p>
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-1">
             {rendermetadata(metadata, handleEdit)}
           </div>

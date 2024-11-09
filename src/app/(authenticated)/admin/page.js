@@ -79,13 +79,13 @@ export default async function Page() {
   return (
     <main className="flex-1">
       <HeaderLogged tokens={tokens} />
-        <div className="container mx-auto ">
+        {/* <div className="container mx-auto ">
           <h1 className="text-2xl font-bold text-white mb-6 ps-6 pt-6">Panel de administración</h1>
           <p className="text-white ps-6 mb-6">Bienvenido al panel de administración. Aquí podrás gestionar los cursos, instructores, campeonatos y usuarios de la plataforma.</p>
           <Link href="/admin/analytics" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-6 ms-6">Ir a panel de analíticas</Link>
-        </div>
+        </div> */}
         <AdminEvents />
-        <div className="container px-4 md:px-6 text-white">
+        <div className="container mx-auto text-white p-6 rounded-lg shadow-lg w-full">
           <h2 className="text-2xl font-bold mb-4 text-white">Enrollments</h2>
           <table className="min-w-full bg-white text-black rounded-lg shadow-lg mb-8">
             <thead className="text-black">

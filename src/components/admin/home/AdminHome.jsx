@@ -91,8 +91,8 @@ export function AdminHome() {
     <>
       <section className="w-full flex items-center justify-center bg-black">
         <div className="container px-4 md:px-6 text white">
-          <h2 className="text-2xl font-bold mb-12 text-white">Administra el Landing</h2>
-          <p className="text-white pb-12">Aquí podrás gestionar el contenido del landing de la plataforma.</p>
+          <h2 className="text-2xl font-bold mb-12 text-white">Admin Home Page</h2>
+          <p className="text-white pb-12">Here you can edit the main page of the website.</p>
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-1">
             {renderLandingData(landingData, handleEdit)}
           </div>          
