@@ -1,6 +1,6 @@
 'use client';
 import { useAuth } from "@/app/auth/AuthContext";
-import { AdminChampsModal, AdminInstructorsModal, Modal } from "@/components/shared/Modal";
+import { AdminChampsModal} from "@/components/shared/Modal";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 

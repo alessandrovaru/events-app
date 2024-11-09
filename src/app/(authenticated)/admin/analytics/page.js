@@ -6,7 +6,6 @@ import { HeaderLogged } from "@/components/shared/Header";
 import { Footer } from "@/components/shared/Footer";
 import { CourseList } from "@/components/dashboard/courses/CourseList";
 import { NextClass } from "@/components/dashboard/courses/NextClass";
-import { AdminInstructors } from "@/components/admin/instructors/AdminInstructors";
 import { AdminChamps, ChampsList } from "@/components/admin/champs";
 import { AdminUsers } from "@/components/admin/users";
 import { AdminLanding } from "@/components/admin/home";
