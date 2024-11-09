@@ -23,6 +23,7 @@ export const EnrollButton = async ({eventId, enrollments}) => {
       });
       if (response.ok) {
         alert('Enrolled successfully');
+        window.location.reload();
       } else {
         alert('Error enrolling' + response.statusText);
       }
