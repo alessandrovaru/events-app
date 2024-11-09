@@ -70,43 +70,7 @@ export const AdminUsersPaymentsModal = ({ data, fetchUserPayments, usersPayments
             <div className="mt-3">
               <h3 className="text-lg leading-6 font-medium text-gray-900">Pagos</h3>
               <div className="mt-2">
-                {usersPayments && usersPayments.length > 0 ? (
-                  usersPayments.map(payment => (
-                    <div key={payment.id} className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm text-gray-900">{payment.payment_type}</p>
-                        <p className="text-xs text-gray-500">{payment.reference}</p>
-                      </div>
-                      <div>
-                        <p className="text-xs text-gray-500">{payment.createdAt}</p>
-                      </div>
-                      <div>
-                        <label htmlFor={`payment-${payment.id}`} className="block text-sm text-gray-900">
-                          Confirmar pago
-                        </label>
-                        <input 
-                          onChange={
-                            ()=> 
-                             {
-                               if (payment.verified) {
-                                handleEdit(payment.id, false)
-                              } else {
-                                handleEdit(payment.id, true)
-                              }
-                             }
-                            } 
-                            type="checkbox" 
-                            id={`payment-${payment.id}`} 
-                            name="verified" 
-                            checked={payment.verified} 
-                            className="h-4 w-4 text-gray-600 border-gray-300 rounded focus:ring-gray-500" 
-                        />
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <p>No payments available</p>
-                )}
+                <p>No paymesnts available</p>
               </div>
             </div>
           </div>

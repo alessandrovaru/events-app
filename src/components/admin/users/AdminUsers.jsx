@@ -148,7 +148,6 @@ export function AdminUsers({ analytics }) {
             <tr>
               <th className="py-2 px-4 border text-left">Photo</th>
               <th className="py-2 px-4 border text-left">Name</th>
-              <th className="py-2 px-4 border text-left">Cursos</th>
             </tr>
           </thead>
           <tbody>
@@ -164,22 +163,7 @@ export function AdminUsers({ analytics }) {
                   />
                 </td>
                 <td className="py-2 px-4 border">{user.name}</td>
-                <td className="px-4 border">
-                  {courses
-                    .filter(course => user.enrolledCourses?.includes(course.id))
-                    .map(course => (
-                      <div key={course.id} className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full mr-2 w-auto inline-block mt-2 mb-2">
-                        {course.name.length > 8 ? `${course.name.slice(0, 8)}...` : course.name}
-                      </div>
-                    ))
-                  }
-                  {isAdmin && (
-                    <AdminUsersModal isEditForm={true} userData={user} courses={courses} />
-                  )}
-                </td>
-                <td className="py-2 px-4 border">
-                  <AdminUsersPaymentsModal data={user} fetchUserPayments={fetchUserPayments} usersPayments={usersPayments} />
-                </td>
+
               </tr>
             ))}
           </tbody>
