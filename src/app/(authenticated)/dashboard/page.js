@@ -49,10 +49,10 @@ export default async function Page() {
 
 
   return (
-    <main className="flex-1 bg-gradient-to-b from-black via-gray-900 to-black p-8">
+    <main className="flex-1 bg-gradient-to-b from-black via-gray-900 to-black ">
       <HeaderLogged tokens={tokens} />
-      <div className="container mx-auto min-h-[80vh]">
-        <h1 className="text-2xl font-bold mt-12 mb-8 ">Next seminars</h1>
+      <div className="container mx-auto min-h-[80vh] p-8 ">
+        <h1 className="text-2xl font-bold  mb-8 ">Next seminars</h1>
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {events.events.map((event, index) => (
             <div 

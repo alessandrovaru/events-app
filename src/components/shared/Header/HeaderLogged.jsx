@@ -51,7 +51,7 @@ export const HeaderLogged = ({tokens}) => {
         <LogoLink />
         <DesktopNavLinks email={tokens?.decodedToken.email} uid={tokens?.decodedToken.uid} />
       </div>
-      <div className="sm:hidden relative flex flex-row my-4">
+      <div className="sm:hidden relative flex flex-row my-4 align-center justify-between p-6">
         <LogoLink />
         <MobileMenuButton onClick={handleDrawer} />
         <MobileDrawer isOpen={isDrawerOpen} onClose={handleDrawer} />
