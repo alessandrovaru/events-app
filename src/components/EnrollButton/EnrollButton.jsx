@@ -35,8 +35,8 @@ export const EnrollButton = async ({eventId, enrollments}) => {
     <button 
       onClick={enroll} 
       className={`${
-        isEnrolled ? 'bg-green-500 hover:bg-green-700' : 'bg-red-500 hover:bg-red-700'
-      } text-white font-bold w-1/2 py-2 px-4 rounded-lg z-20`}
+        isEnrolled ? 'bg-green-500 hover:bg-green-700' : 'text-black bg-white hover:bg-gray-300 '
+      } font-bold w-1/2 py-2 px-4 rounded-lg z-20`}
     >
       {isEnrolled ? 'Enrolled' : 'Enroll'}
     </button>
